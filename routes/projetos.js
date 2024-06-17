@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Projeto = require('../models/Projeto');
+const User = require('../models/User');
 const UsuarioDoProjeto = require('../models/UsuarioDoProjeto'); 
 const { where } = require('sequelize');
+const Sequelize = require('sequelize');
+
+const Op = Sequelize.Op;
 
 router.get('/list', (req, res) => {
     res.render('listProjects');
@@ -10,7 +14,7 @@ router.get('/list', (req, res) => {
 
 // Add um novo projeto através da form
 router.post('/add/:id', (req, res) => {
-    let { nome, cliente_responsavel, data_ini, data_fim, status, descricao } = req.body;
+    let { nome, cliente_responsavel, data_ini, data_fim, status, descricao, tipo_projeto } = req.body;
     let id_usuario = req.params.id;
 
     // insert
@@ -21,9 +25,24 @@ router.post('/add/:id', (req, res) => {
         data_fim,
         status,
         descricao,
-        id_usuario
+        id_usuario,
+        tipo_projeto
     })
     .then(projeto => res.redirect(`/projetos/show/${id_usuario}/${projeto.id}`)) // Corrigido o template string usando ` ao invés de '
+    .catch(err => console.log(err));
+});
+
+
+router.post('/update/:id_usuario_logado/:id_projeto', (req, res) => {
+    const { id_usuario_logado, id_projeto } = req.params;
+    const { status } = req.body;
+
+    // Atualização do projeto
+    Projeto.update(
+        { status }, // Campos a serem atualizados
+        { where: { id: id_projeto } } // Condição para selecionar o projeto a ser atualizado
+    )
+    .then(() => res.redirect(`/projetos/show/${id_usuario_logado}/${id_projeto}`))
     .catch(err => console.log(err));
 });
 
@@ -47,6 +66,15 @@ router.get('/show/:id_usuario/:id_projeto', async (req, res) => {
             });
         }
 
+        let usuarios = await User.findAll({
+            where: {
+                id: {
+                    [Op.not]: id_usuario // Busca todos os usuários cujo ID não é igual ao id_usuario
+                }
+            }
+        });
+
+
         // Agora busca o projeto com os dados atualizados
         const projeto = await Projeto.findOne({
             where: { id: id_projeto } // Assumindo que 'id' é o nome do campo chave de Projeto        
@@ -55,10 +83,10 @@ router.get('/show/:id_usuario/:id_projeto', async (req, res) => {
         if (!projeto) {
             return res.status(404).send('Projeto não encontrado');
         }
-
+       
         // Adiciona um pequeno atraso antes de renderizar a página
         setTimeout(() => {
-            res.render('showprojeto', { projeto, usuarioProjetoLider, id_usuario, id_projeto });
+            res.render('showprojeto', { projeto, usuarioProjetoLider, id_usuario, id_projeto, usuarios });
         }, 500); // 500ms de atraso
 
     } catch (error) {

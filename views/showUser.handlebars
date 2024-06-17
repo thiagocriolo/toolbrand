@@ -54,6 +54,15 @@
                                 name="descricao"
                             >
 						</div>
+						<div class="mb-3">
+							<input 
+                                type="textarea" 
+                                placeholder="Tipo do projeto" 
+                                class="form-control" 
+                                id="tipo_projeto"
+                                name="tipo_projeto"
+                            >
+						</div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                             <button type="submit" class="btn btn-primary">Cadastrar</button>
@@ -186,7 +195,7 @@
 																</a>
 															</div>
 														</div>
-														<div class="col-6 align-items-end alinhardireita">7 de Julho</div>
+														<div class="col-6 align-items-end alinhardireita">{{this.data_fim}}</div>
 													</div>
 												</div>
 												<button class="clearfix btn-primary btn">

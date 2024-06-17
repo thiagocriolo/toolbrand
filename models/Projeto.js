@@ -20,6 +20,9 @@ const Projeto = db.define('projeto',{
     }, 
     descricao:{
         type: Sequelize.STRING,
+    }, 
+    tipo_projeto:{
+        type: Sequelize.STRING,
     },  
     id_usuario:{
         type: Sequelize.INTEGER,

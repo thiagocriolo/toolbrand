@@ -1,4 +1,94 @@
 <div class="container-fluid h-100 text-center">
+        
+		<!-- Modal -->
+		<div class="cadastrarprojeto modal fade" id="addColabs{{projeto.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Participante</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					
+					<div class="modal-body">
+						<form action="/usuariosDoProjeto/add/{{this.id_usuario}}/{{projeto.id}}" method="POST">
+							<div class="mb-3">
+								<select class="form-select" aria-label="Selecione o participante" name="id_usuario">
+									<option disabled selected>Selecione o participante</option>
+									{{#each usuarios}}
+										<option value="{{this.id}}">{{this.nome}}</option>
+									{{/each}}
+								</select>
+							</div>
+
+							<div class="mb-3">
+								<select class="form-select" aria-label="Tipo de participante" name="tipo_usuario">
+									<option disabled selected>Tipo de participante</option>
+									<option value="2">Designer</option>
+									<option value="3">Colaborador</option>
+									<option value="4">Cliente</option>
+								</select>
+							</div>
+
+							<div class="mb-3">
+								<p class="fw-bold">Pode colaborar</p>
+								<div class="form-check">
+									<input name="pode_colaborar" class="form-check-input" type="checkbox" value="1" id="podeColaborar">
+									<label class="form-check-label" for="podeColaborar">Sim</label>
+								</div>
+							</div>
+
+							<div class="mb-3">
+								<p class="fw-bold">Pode editar</p>
+								<div class="form-check">
+									<input name="pode_editar" class="form-check-input" type="checkbox" value="1" id="podeEditar">
+									<label class="form-check-label" for="podeEditar">Sim</label>
+								</div>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+								<button type="submit" class="btn btn-primary">Cadastrar</button>
+							</div>
+						</form>
+					</div>
+
+					
+				</div>
+			</div>
+		</div>
+		
+		<!-- Modal -->
+		<div class="cadastrarprojeto modal fade" id="editaProjeto{{projeto.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Participante</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					
+					<div class="modal-body">
+						<form action="/projetos/update/{{this.id_usuario}}/{{projeto.id}}" method="POST">
+					
+							<div class="mb-3">
+								<p class="fw-bold">Finalizar projeto</p>
+								<div class="form-check">
+									<input name="status" class="form-check-input" type="checkbox" value="1" id="editaProjeto">
+									<label class="form-check-label" for="editaProjeto">Sim</label>
+								</div>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+								<button type="submit" class="btn btn-primary">Finalizar</button>
+							</div>
+						</form>
+					</div>
+
+					
+				</div>
+			</div>
+		</div>
+		
 		<div class="row min-vh-100 h-100 align-items-center">
 			<div class="sidebar col-1">
 				<nav class="navbar col mw-2 bg-body-tertiary fixed-top">
@@ -81,29 +171,45 @@
 
 										<div class="projetoheader">
 											<img src="/images/logobase.png" alt="">
-											<h2>Projeto X</h2>
-											<h4>Tipo de Projeto</h4>
+											<h2>{{projeto.nome}}</h2>
+											<h4>Projeto: {{projeto.tipo_projeto}}</h4>
 										</div>
 										<div class="projetobody">
-											<p>Pequeno brifing sobre o cliente e a conta. Lorem ipsum dolor sit amet,
-												consectetuer
-												adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
-												dolore magna
-												aliquam erat vLorem ipsum dolor sit amet, consectetuer adipiscing elit,
-												sed diam
+											<p>
+                                                {{projeto.descricao}}
 											</p>
 										</div>
 										<div class="rodape">
-											<span class="textorodape">Responsável: </span><span
-												id="responsaprojeto">Fulano</span><br />
-											<span class="textorodape">Início do Projeto: </span><span>1 de
-												Maio</span><br />
-											<span class="textorodape">Entrega do Projeto: </span><span>30 de
-												Junho</span>
+											<span class="textorodape">Cliente: </span><span
+												id="responsaprojeto">{{projeto.cliente_responsavel}}</span><br />
+											<span class="textorodape">Início do Projeto: </span><span>
+                                                {{projeto.data_ini}}
+                                            </span><br />
+											<span class="textorodape">Entrega do Projeto: </span><span>
+                                                {{projeto.data_fim}}
+                                            </span>
 										</div>
-										<button class="clearfix btn-primary btn">
+										<button 
+											class="clearfix btn-primary btn"
+											data-bs-toggle="modal" 
+											data-bs-target="#editaProjeto{{projeto.id}}"
+											data-bs-whatever="@getbootstrap"
+											>
 											<i class="bi bi-columns"></i> Editar Projeto
 										</button>
+										<div class="mt-1">
+											<button 
+												class="clearfix btn-warning btn"
+												data-bs-toggle="modal" 
+												data-bs-target="#addColabs{{projeto.id}}"
+												data-bs-whatever="@getbootstrap"
+											>
+												<i class="bi bi-columns"></i> Adicionar participantes
+											</button>
+											
+											
+
+										</div>
 									</div>
 								</div>
 							</div>

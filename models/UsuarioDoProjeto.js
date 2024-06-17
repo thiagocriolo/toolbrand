@@ -13,10 +13,10 @@ const UsuarioDoProjeto = db.define('usuarioDoProjeto',{
         type: Sequelize.INTEGER,
     },
     pode_colaborar:{
-        type: Sequelize.INTEGER,
+        type: Sequelize.BOOLEAN,
     },
     pode_editar:{
-        type: Sequelize.INTEGER,
+        type: Sequelize.BOOLEAN,
     },
 
 },
