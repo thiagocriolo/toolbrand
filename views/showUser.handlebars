@@ -1,0 +1,221 @@
+
+
+	<div class="cadastrarprojeto modal fade" id="cadastraProjeto{{user.dataValues.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Cadastrar Projeto n° </h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form action="/projetos/add/{{user.dataValues.id}}" method="POST">
+						<div class="mb-3">
+							<input 
+                                type="text" 
+                                placeholder="nome do Cliente Responsável" 
+                                class="form-control" 
+                                id="cliente_responsavel"
+                                name="cliente_responsavel"
+                            >
+						</div>
+						<div class="mb-3">
+							<input 
+                                type="text" 
+                                placeholder="Nome da Marca" 
+                                class="form-control" 
+                                id="nome"
+                                name="nome"
+                            >
+						</div>
+						<div class="mb-3">
+							<input 
+                                type="date" 
+                                placeholder="Previsão de início" 
+                                class="form-control" 
+                                id="data_ini"
+                                name="data_ini"
+                            >
+						</div>
+						<div class="mb-3">
+							<input 
+                                type="date" 
+                                placeholder="Previsão de encerramento" 
+                                class="form-control" 
+                                id="data_fim"
+                                name="data_fim"
+                            >
+						</div>
+						<div class="mb-3">
+							<input 
+                                type="textarea" 
+                                placeholder="Descrição do projeto" 
+                                class="form-control" 
+                                id="descricao"
+                                name="descricao"
+                            >
+						</div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        </div>
+					</form>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container-fluid h-100 text-center">
+		<div class="row min-vh-100 h-100 align-items-center">
+			<div class="sidebar col-1">
+				<nav class="navbar col mw-2 bg-body-tertiary fixed-top">
+					<div class="container-fluid min-vh-100">
+						<div class="avatarheader mb-auto mt-3">
+							<img src="/images/Avatars/avatars_2.png">
+						</div>
+
+						<button class="navbar-toggler mb-4" type="button" data-bs-toggle="offcanvas"
+							data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
+							aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+
+						<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+							aria-labelledby="offcanvasNavbarLabel">
+							<button type="button" class="btn-close text-reset ms-auto p-2" data-bs-dismiss="offcanvas"
+								aria-label="Close"></button>
+							<div class="offcanvas-header">
+								<div class="perfilmenu">
+									<div class="avatarmenu mb-auto mt-3">
+										<img src="/images/Avatars/avatars_2.png">
+									</div>
+									<h4 class="offcanvas-title d-none d-sm-block" id="offcanvas">Fulano de tal</h4>
+									<h5 class="d-none d-sm-block" id="offcanvas">Profissão</h5>
+								</div>
+							</div>
+
+							<div class="offcanvas-body">
+								<ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
+									<li class="nav-item">
+										<a href="#" class="nav-link text-truncate">
+											<i class="bi bi-person-circle"></i><span
+												class="ms-1 d-none d-sm-inline">Editar
+												Perfil</span>
+										</a>
+									</li>
+									<li>
+										<a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-truncate">
+											<i class="bi bi-columns"></i><span
+												class="ms-1 d-none d-sm-inline">Projetos</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="nav-link text-truncate">
+											<i class="bi bi-list-task"></i><span
+												class="ms-1 d-none d-sm-inline">Tarefas</span></a>
+									</li>
+									<li>
+										<a href="#" class="nav-link text-truncate">
+											<i class="bi bi-calendar-heart"></i><span
+												class="ms-1 d-none d-sm-inline">Calendário</span></a>
+									</li>
+									<li>
+										<a href="#" class="nav-link text-truncate">
+											<i class="bi bi-gear"></i><span
+												class="ms-1 d-none d-sm-inline">Configurações</span>
+										</a>
+									</li>
+								</ul>
+
+							</div>
+							<div class="offcanvasfooter align-items-center">
+								<img class="w-50 p-4" src="/images/toolbrand_blue.svg">
+								<p>ToolBrand 2024 © Todos os Direitos Reservados</p>
+							</div>
+						</div>
+					</div>
+				</nav>
+			</div>
+
+            <div class="text-center">
+                <h1 class="">Usuario </h1>
+                <h3 class="fw-bold">{{user.dataValues.id}}</h3>
+            </div>
+
+			<div class="dashboard h-100 col-11">
+				<div class="boxcontainer  h-75 w-75 position-absolute top-50 start-50 translate-middle ">
+					<div class="container h-100 text-center">
+						<div class="row h-100 align-items-center " style="display:flex">
+                            
+                            {{#each projetos}}
+									
+								<div class="caixaprojeto col-3">
+									
+									<div class="dashbox">
+										<div class="projetoescopo">
+											<div class=" col position-relative">
+												
+												<div class="projetoheader">
+													<h2>{{this.nome}}</h2>
+													<h5>Status: 
+														<span class="fw-bold">
+														
+															Em andamento
+																														
+														</span>
+													</h5>
+												</div>
+												
+												<div class="projetobody">
+													<p>Pequeno brifing sobre o cliente e a conta.
+													</p>
+												</div>
+												<div class="progresso">
+													<div class="inside"></div>
+												</div>
+												<div class="projetorodape container-fluid">
+													<div class="row">
+														<div class="col-6 align-items-start">
+															<div class="equipe projetocolaboradores">
+																<a href="#">
+																	<img src="/images/Avatars/avatars_1.png">
+																	<img src="/images/Avatars/avatars_2.png">
+																	<img src="/images/Avatars/avatars_3.png">
+																	<span> + 4</span>
+																</a>
+															</div>
+														</div>
+														<div class="col-6 align-items-end alinhardireita">7 de Julho</div>
+													</div>
+												</div>
+												<button class="clearfix btn-primary btn">
+													<i class="bi bi-columns"></i> Editar Projeto
+												</button>
+											</div>
+										</div>
+										<a class="btn btn-primary" href="/projetos/show/{{../user.dataValues.id}}/{{this.id}}">Ver projeto</a>
+
+									</div>
+								</div>
+									
+                        	{{/each}}
+							<div class="caixaprojeto col-3">
+								<div class="dashbox">
+									<div class="projetoescopo">
+										<div class="projetovazio">
+											<button type="button" class="btn " data-bs-toggle="modal"
+												data-bs-target="#cadastraProjeto{{user.dataValues.id}}" data-bs-whatever="@getbootstrap"><i class="bi bi-plus-circle-fill"></i></button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	

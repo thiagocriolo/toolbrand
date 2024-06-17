@@ -1,0 +1,83 @@
+
+	<div class="container-flex text-center">
+		<div class="telabase row align-items-start h-100">
+
+			<div class="col h-100 leftside">
+				<div class=" row align-items-center min-vh-100">
+					<div class="col">
+						<img src="/images/login.svg" alt="">
+					</div>
+				</div>
+			</div>
+
+			
+
+			<div class="telalogin col h-100">
+				
+				
+				<div class="position-relative  row align-items-center text-light min-vh-100">
+					
+					<div class=" col-md-6 position-absolute top-50 start-50 translate-middle ">
+						<img class="logo mb-4" src="/images/toolbrand.svg">
+
+						<form class="telaform" action="/users/login" method="POST">
+
+							<div class="row mb-2">
+								<div class="col">
+									<!-- Cadastrar -->
+									<p><a class="cadastro prelink titulo">Login</a></p>
+									<p class="text-dark">Entre com seu e-mail e senha</p>
+								</div>
+							</div>
+
+							<!-- Email -->
+							<div data-mdb-input-init class="mb-3">
+								<input
+                                    placeholder="E-mail" 
+                                    type="email" 
+									class="textoform form-control "
+                                    id="email" 
+                                    name="email" 
+                                   
+                                />
+							</div>
+
+							<!-- Senha -->
+							<div data-mdb-input-init class="mb-3">
+								<input 
+                                    placeholder="Senha" 
+                                    type="password" 
+                                    id="senha" 
+                                    name="senha" 
+									class="textoform form-control " 
+                                />
+							</div>
+
+							
+
+							<!-- Botão de login -->
+							<button type="submit" data-mdb-button-init data-mdb-ripple-init
+								class="btn botaolog btn-primary btn-block form-control mb-2">
+								Entrar
+							</button>
+
+							<div class="row ">
+								<div class="col">
+									<!-- Cadastrar -->
+									<a class="cadastro prelink">Não tem Cadastro? Faça <a href="/users/register"
+											class="cadastro">seu Cadastro</a>
+									</a>
+								</div>
+							</div>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	</div>
+	

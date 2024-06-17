@@ -1,0 +1,516 @@
+:root {
+	--primary-color: #485eff;
+	--verde: #4ccc6d;
+	--azul: #485eff;
+	--amarelo: #f6a841;
+	--cinza: #999999;
+  }
+
+a {
+	text-decoration: none !important;
+}
+
+html, body {
+	height: 100%;
+	background-color: var(--primary-color) !important;
+	font-family: "poppins" !important ;
+	
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+.greytext {
+	color: #aeaeae;
+	text-decoration: none;
+}
+
+.leftside img {
+	padding: 100px;
+}
+
+.telabase {
+	margin: 0px !important;
+}
+
+.telalogin {
+	background-color: #485eff;
+	font-family: "Poppins", sans-serif;
+	font-weight: 500;
+	font-style: normal;
+}
+
+.telaform {
+	background-color: #ffffff;
+	border-radius: 50px;
+	padding: 50px !important;
+}
+
+.telalogin input::placeholder {
+	opacity: 1;
+	color: #afafaf !important;
+  }
+
+  .telalogin input.textoform {
+	border: none;
+	border-radius: 10em;
+	padding: 15px 20px ;
+	background-color: #efefef;
+  }
+
+.cadastro {
+	font-weight: 700;
+	color: #485eff;
+}
+
+
+.cadastro.prelink {
+	color: #333;
+	text-decoration: none;
+	font-weight: 500;
+}
+
+.botaolog {
+	border-radius: 10em !important;
+    padding: 10px 30px !important;
+	margin: 0px !important;
+}
+
+.titulo {
+	color: #485eff !important;
+	font-family: "Poppins", sans-serif;
+	font-weight: 700 !important;
+	font-style: normal;
+	font-size: 2em;
+}
+
+.avatarssection {
+	display: inline-block;
+}
+
+.avatarssection img {
+	width: 70px;
+	border-radius: 15px;
+}
+
+input[type="radio"] {
+	display: none;
+}
+
+label {
+	position: relative;
+	color: var(--primary-color);
+	padding: 5px;
+}
+
+input[type="radio"]:checked + label img{
+	border: #0b91ff 3px solid;
+    background-color: var(--primary-color);
+	width: 80px;
+}
+
+.sessaoavatar {
+	margin: 0;
+	text-align: left;
+	left: 10px;
+	position: relative;
+}
+
+.logo {
+	width: 200px;
+}
+
+.navbar-toggler {
+	margin: auto auto 0px auto;
+}
+
+.navbar {
+	width: 100px;
+}
+
+.avatarheader img {
+	width: auto;
+	width: 75px;
+    border-radius: 50em;
+}
+
+.avatarmenu img {
+	width: auto;
+	width: 150px;
+    border-radius: 50em;
+}
+
+.perfilmenu {
+	text-align: center;
+    width: 100%;
+}
+
+.perfilmenu h5 {
+	color: #aaaaaa;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.perfilmenu h4 {
+	color: var(--primary-color);
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.offcanvas-body {
+	padding-left: 50px;
+}
+
+.painel.row {
+	margin: 0 0 0 0;
+}
+
+.offcanvasfooter {
+	text-align: center;
+}
+
+
+
+.projetocolaboradores img {
+	display: inline;
+	width: 25px;
+	margin-left: -13px ;
+	border: 2px solid #fff;
+	border-radius: 10em;
+}
+
+.progresso {
+	background-color: #fff;
+	width: 100%;
+	border: 4px solid #fff;
+	border-radius: 10em;
+}
+
+.progresso .inside.andamento {
+	background-color: #73915a;
+}
+
+.progresso .inside.concluído {
+	background-color: #73915a;
+}
+
+.progresso .inside {
+	background-color: var(--cinza);
+	width: 100%;
+	height: 12px;
+	border-radius: 10em;
+	text-align: right;
+	font-size: .50em;
+    font-weight: 800;
+    padding-right: 10px;
+}
+
+
+.projetoescopo {
+	padding: 10px;
+}
+
+
+
+.projetoescopo .dashbox {
+	height: 100%;
+}
+
+
+.dashbox {
+	background-color: #fff;
+	padding: 30px 30px 0px;
+	height: 100%;
+	text-align: center;
+	border-radius: 30px;
+}
+
+.projetoescopo p {
+	text-align: justify;
+	font-family: "Poppins", sans-serif;
+	font-weight: 500;
+	font-style: normal;
+	font-size: 12px;
+}
+
+.projetoescopo h2 {
+	color: var(--primary-color);
+	padding: 20px 0px 0px;
+	font-size: 32px;
+}
+
+.projetoescopo h4 {
+	padding: 0px 0px 20px;
+	font-size: 20px;
+}
+
+.projetoescopo .rodape {
+	text-align: left;
+	padding-bottom: 20px;
+	font-weight: 600;
+	color: var(--primary-color);
+}
+
+.projetoescopo .btn.btn-primary {
+	font-family: "poppins";
+    border-radius: 10em;
+    padding: 10px 20px;
+}
+
+.projetoescopo span {
+	font-weight: 400;
+}
+
+.projetoescopo span.textorodape {
+	font-weight: 700;
+}
+
+.fase {
+	padding: 10px;
+}
+
+.fase #diagnostico {
+	background-image: url("images/Fases_Diagnóstico.svg");
+}
+
+.fase #estrategia {
+	background-image: url("images/Fases_Estratégia.svg");
+}
+
+.fase #criacao {
+	background-image: url("images/Fases_Criação.svg");
+}
+
+.fase #desdobramentos {
+	background-image: url("images/Fases_Desdobramentos.svg");
+}
+
+.fase>.row {
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: auto 130%;
+}
+
+.fase>.row.andamento {
+	background-color: var(--amarelo);
+}
+
+.fase>.row.row.concluido .projetocolaboradores a span,
+.fase>.row.row.andamento .projetocolaboradores a span{
+	color: var(--azul);
+}
+
+.fase>.row.row.andamento a{
+	background-color: var(--azul);
+}
+.fase>.row.row.andamento .progresso .inside{
+	background-color: var(--amarelo);
+}
+
+
+.fase>.row.concluido {
+	background-color: var(--verde);
+}
+.fase>.row.row.concluido a{
+	background-color: var(--azul);
+}
+.fase>.row.row.concluido .progresso .inside{
+	background-color: var(--verde);
+}
+
+.fase h2 {
+	font-weight: 700;
+	margin: 0;
+}
+
+.fase h5 {
+	font-weight: 400;
+	font-size: 16px;
+	margin: 0;
+	margin-bottom: 20px
+}
+
+
+.caixaprojeto>.dashbox h5  {
+	font-size: 15px;
+
+}
+
+.caixaprojeto>.dashbox .projetoheader {
+	text-align: left;
+}
+
+.caixaprojeto>.dashbox button {
+	margin-top: 20px;
+    text-align: center;
+}
+
+
+
+.caixaprojeto>.dashbox  .projetorodape{
+	text-align: left;
+}
+
+
+.caixaprojeto>.dashbox {
+	padding: 20px 30px 30px;
+}
+
+.caixaprojeto>.dashbox .progresso{
+	
+	background-color: #cccccc;	
+	border-color: #cccccc;	
+	margin-bottom: 10px;
+}
+
+.caixaprojeto>.dashbox .progresso .inside{
+	background-color: var(--primary-color) !important;	
+}
+
+.projetofase .fase {
+	padding: 10px;;
+}
+
+.fase>.row{
+	background-color: #cccccc;
+	padding: 20px 20px;
+	border-radius: 20px;
+}
+
+.alinhardireita {
+	text-align: right;
+}
+
+
+.fase>.row a{
+	background-color: var(--cinza);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10em;
+	padding: 3px 0px 0px 0px;
+	font-size: 12px;
+}
+
+.fase>.row .row {
+	padding: 2px 5px 4px 10px;
+}
+
+.projetoinfo {
+	padding: 0 !important;
+}
+
+.equipe a{
+	background: none !important;
+	color: var(--cinza) !important;
+	font-weight: 700 !important;
+	padding-left: 10px !important;
+}
+
+.cabecarioprojeto {
+	text-align: left;
+	padding-left: 60px !important;
+}
+
+.projetorodape .row>div{
+	padding: 0;
+	margin: 0;
+
+}
+
+.projetovazio {
+	padding: 60px 0px !important;
+}
+
+.projetovazio .btn{
+	padding: 0px !important;
+}
+
+.projetovazio i {
+	color: var(--azul);
+    font-size: 50px;
+    margin: 0;
+}
+
+.cadastrarprojeto form input{
+	background-color: #efefefef;
+    border-radius: 10em;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+}
+
+.cadastrarprojeto button{
+    border-radius: 10em;
+}
+
+.caixaprojeto.col-3 {
+    padding-bottom: 30px;
+}
+
+.etapaheader {
+	text-align: left;
+}
+
+.anexos.row>div {
+	text-align: center;
+}
+
+.anexos {
+	padding: 10px 0px;
+}
+
+.anexos a {
+	background-color: var(--verde);
+    padding: 5px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 300;
+}
+
+.cartao.cardadd {
+	background-color: var(--verde);
+	color: #fff;
+}
+
+.cartao img {
+	width: 30px;
+	border: 2px solid #fff;
+	border-radius: 10em;
+}
+
+.faseheader {
+	padding: 20px 25px !important;
+}
+
+.etapaheader h5 {
+	font-size: 14px;
+    color: var(--verde);
+    padding-bottom: 20px;
+}
+
+.cartao i {
+	font-size: 20px;
+}
+
+.cartao {
+	background-color: #dedede;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+
+.cartao .row {
+	padding: 10px;
+}
+
+.cartao span {
+	text-align: left;
+	font-size: 16px;
+}
+
+.cardtitulo {
+	text-align: left;
+}

@@ -1,0 +1,253 @@
+<div class="container-fluid h-100 text-center">
+		<div class="row min-vh-100 h-100 align-items-center">
+			<div class="sidebar col-1">
+				<nav class="navbar col mw-2 bg-body-tertiary fixed-top">
+					<div class="container-fluid min-vh-100">
+						<div class="avatarheader mb-auto mt-3">
+							<img src="/images/Avatars/avatars_2.png">
+						</div>
+
+						<button class="navbar-toggler mb-4" type="button" data-bs-toggle="offcanvas"
+							data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
+							aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+
+						<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+							aria-labelledby="offcanvasNavbarLabel">
+							<button type="button" class="btn-close text-reset ms-auto p-2" data-bs-dismiss="offcanvas"
+								aria-label="Close"></button>
+							<div class="offcanvas-header">
+								<div class="perfilmenu">
+									<div class="avatarmenu mb-auto mt-3">
+										<img src="/images/Avatars/avatars_2.png">
+									</div>
+									<h4 class="offcanvas-title d-none d-sm-block" id="offcanvas">Fulano de tal</h4>
+									<h5 class="d-none d-sm-block" id="offcanvas">Profissão</h5>
+								</div>
+							</div>
+
+							<div class="offcanvas-body">
+								<ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
+									<li class="nav-item">
+										<a href="#" class="nav-link text-truncate">
+											<i class="bi bi-person-circle"></i><span
+												class="ms-1 d-none d-sm-inline">Editar
+												Perfil</span>
+										</a>
+									</li>
+									<li>
+										<a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-truncate">
+											<i class="bi bi-columns"></i><span
+												class="ms-1 d-none d-sm-inline">Projetos</span>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="nav-link text-truncate">
+											<i class="bi bi-list-task"></i><span
+												class="ms-1 d-none d-sm-inline">Tarefas</span></a>
+									</li>
+									<li>
+										<a href="#" class="nav-link text-truncate">
+											<i class="bi bi-calendar-heart"></i><span
+												class="ms-1 d-none d-sm-inline">Calendário</span></a>
+									</li>
+									<li>
+										<a href="#" class="nav-link text-truncate">
+											<i class="bi bi-gear"></i><span
+												class="ms-1 d-none d-sm-inline">Configurações</span>
+										</a>
+									</li>
+								</ul>
+
+							</div>
+							<div class="offcanvasfooter align-items-center">
+								<img class="w-50 p-4" src="/images/toolbrand_blue.svg">
+								<p>ToolBrand 2024 © Todos os Direitos Reservados</p>
+							</div>
+						</div>
+					</div>
+				</nav>
+			</div>
+
+
+			<div class="dashboard h-100 col-11">
+				<div class="boxcontainer  h-75 w-75 position-absolute top-50 start-50 translate-middle ">
+					<div class="container h-100 text-center">
+						<div class="row h-100 align-items-center">
+							<div class="projetoescopo h-100 col-4" >
+								<div class="dashbox">
+									<div class=" col position-relative">
+
+										<div class="projetoheader">
+											<img src="/images/logobase.png" alt="">
+											<h2>Projeto X</h2>
+											<h4>Tipo de Projeto</h4>
+										</div>
+										<div class="projetobody">
+											<p>Pequeno brifing sobre o cliente e a conta. Lorem ipsum dolor sit amet,
+												consectetuer
+												adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
+												dolore magna
+												aliquam erat vLorem ipsum dolor sit amet, consectetuer adipiscing elit,
+												sed diam
+											</p>
+										</div>
+										<div class="rodape">
+											<span class="textorodape">Responsável: </span><span
+												id="responsaprojeto">Fulano</span><br />
+											<span class="textorodape">Início do Projeto: </span><span>1 de
+												Maio</span><br />
+											<span class="textorodape">Entrega do Projeto: </span><span>30 de
+												Junho</span>
+										</div>
+										<button class="clearfix btn-primary btn">
+											<i class="bi bi-columns"></i> Editar Projeto
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="projetofase h-100 col-8" >
+								<div class="box h-100">
+
+
+									<div class="fase h-25">
+										<div class="row h-100 concluido " id="diagnostico">
+											<div class="col-1 projetoinfo">
+												<div class="anexos row h-25">
+													<a href="#"><i class="bi bi-paperclip"></i><span> 4</span></a>
+												</div>
+												<div class="comentario row h-25">
+													<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
+												</div>
+												<div class="fases row h-25">
+													<a href="#"><i class="bi bi-check2-square"></i> <span>4</span></a>
+												</div>
+												<div class="equipe projetocolaboradores row h-25">
+													<a href="#">
+														<img src="/images/Avatars/avatars_1.png">
+														<img src="/images/Avatars/avatars_2.png">
+														<img src="/images/Avatars/avatars_3.png">
+														 <span>  + 	4</span>
+													</a>
+												</div>
+											</div>
+											<div class="col-9 cabecarioprojeto">
+                                                <a href="/fases/faseUm/{{this.id_usuario}}/{{this.id_projeto}}">
+                                                    <h2>1. Diagnóstico</h2>
+                                                    <h5>Status: <span>Em andamento </span></h5>
+                                                    <div class="progresso"><div class="inside">100</div></div>
+                                                </a>
+											</div>
+											<div class="col-2">
+												
+											</div>
+										</div>
+									</div>
+
+
+									<div class="fase h-25">
+										<div class="row h-100 andamento" id="estrategia">
+											<div class="col-1 projetoinfo">
+												<div class="anexos row h-25">
+													<a href="#"><i class="bi bi-paperclip"></i><span> 4</span></a>
+												</div>
+												<div class="comentario row h-25">
+													<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
+												</div>
+												<div class="fases row h-25">
+													<a href="#"><i class="bi bi-check2-square"></i> <span>4</span></a>
+												</div>
+												<div class="equipe projetocolaboradores row h-25">
+													<a href="#">
+														<img src="/images/Avatars/avatars_1.png">
+														<img src="/images/Avatars/avatars_2.png">
+														<img src="/images/Avatars/avatars_3.png">
+														 <span>  + 	4</span>
+													</a>
+												</div>
+											</div>
+											<div class="col-9 cabecarioprojeto">
+												<h2>2. Estratégia</h2>
+												<h5>Status: <span>Em andamento </span></h5>
+												<div class="progresso"><div class="inside">100</div></div>
+											</div>
+											<div class="col-2">
+												
+											</div>
+										</div>
+									</div>
+
+									<div class="fase h-25">
+										<div class="row h-100 " id="criacao">
+											<div class="col-1 projetoinfo">
+												<div class="anexos row h-25">
+													<a href="#"><i class="bi bi-paperclip"></i><span> 4</span></a>
+												</div>
+												<div class="comentario row h-25">
+													<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
+												</div>
+												<div class="fases row h-25">
+													<a href="#"><i class="bi bi-check2-square"></i> <span>4</span></a>
+												</div>
+												<div class="equipe projetocolaboradores row h-25">
+													<a href="#">
+														<img src="/images/Avatars/avatars_1.png">
+														<img src="/images/Avatars/avatars_2.png">
+														<img src="/images/Avatars/avatars_3.png">
+														 <span>  + 	4</span>
+													</a>
+												</div>
+											</div>
+											<div class="col-9 cabecarioprojeto">
+												<h2>3. Criação</h2>
+												<h5>Status: <span>Em andamento </span></h5>
+												<div class="progresso"><div class="inside">100</div></div>
+											</div>
+											<div class="col-2">
+												
+											</div>
+										</div>
+									</div>
+
+									<div class="fase h-25">
+										<div class="row h-100 " id="desdobramentos">
+											<div class="col-1 projetoinfo">
+												<div class="anexos row h-25">
+													<a href="#"><i class="bi bi-paperclip"></i><span> 4</span></a>
+												</div>
+												<div class="comentario row h-25">
+													<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
+												</div>
+												<div class="fases row h-25">
+													<a href="#"><i class="bi bi-check2-square"></i> <span>4</span></a>
+												</div>
+												<div class="equipe projetocolaboradores row h-25">
+													<a href="#">
+														<img src="/images/Avatars/avatars_1.png">
+														<img src="/images/Avatars/avatars_2.png">
+														<img src="/images/Avatars/avatars_3.png">
+														 <span>  + 	4</span>
+													</a>
+												</div>
+											</div>
+											<div class="col-9 cabecarioprojeto">
+												<h2>4. Desdobramentos</h2>
+												<h5>Status: <span>Em andamento </span></h5>
+												<div class="progresso"><div class="inside">100</div></div>
+											</div>
+											<div class="col-2">
+												
+											</div>
+										</div>
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
