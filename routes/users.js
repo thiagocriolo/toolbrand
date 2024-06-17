@@ -2,14 +2,19 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Projeto = require('../models/Projeto');
+const UsuarioDoProjeto = require('../models/UsuarioDoProjeto');
 const { where } = require('sequelize');
+const Sequelize = require('sequelize');
+
+const Op = Sequelize.Op;
+
 
 router.get('/register', (req, res) => {
     res.render('register');
 })
 
-
 router.get('/show/:id', (req, res) => {
+    
     User.findOne({
         where: { id: req.params.id }
     }).then(user => {
@@ -18,7 +23,9 @@ router.get('/show/:id', (req, res) => {
         }
 
         Projeto.findAll({
-            where: { id_usuario: req.params.id }
+            where: { 
+                id_usuario: req.params.id 
+            } 
         }).then(projetos => {
             res.render('showUser', {
                 user,
@@ -33,6 +40,8 @@ router.get('/show/:id', (req, res) => {
         res.status(500).send('Erro ao recuperar usuário');
     });
 });
+
+
 
 
 // Add um novo user através da form

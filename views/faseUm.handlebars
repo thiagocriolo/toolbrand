@@ -38,7 +38,7 @@
 										</a>
 									</li>
 									<li>
-										<a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-truncate">
+										<a href="/users/show/{{id_usuario_logado.id}}/{{id_projeto}}" data-bs-toggle="collapse" class="nav-link text-truncate">
 											<i class="bi bi-columns"></i><span
 												class="ms-1 d-none d-sm-inline">Projetos</span>
 										</a>
@@ -101,6 +101,7 @@
 									<div class="col-9 cabecarioprojeto">
 										<h2>1. Diagnóstico</h2>
 										<h5>Status: <span>Em andamento </span></h5>
+										<h5>Lider: {{usuarioProjetoLider.id}}<span> </span></h5>
 										<div class="progresso">
 											<div class="inside">100</div>
 										</div>

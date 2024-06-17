@@ -36,5 +36,9 @@ const Projeto = db.define('projeto',{
     timestamps: false,
 });
 
+// Associações
+Projeto.associate = function(models) {
+    Projeto.belongsToMany(models.User, { through: models.UsuarioDoProjeto, foreignKey: 'id_projeto' });
+};
 
 module.exports = Projeto
