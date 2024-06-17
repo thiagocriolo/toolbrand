@@ -49,8 +49,6 @@ db
 
 // routes 
 app.get('/', (req, res) => {
-    
-    
     res.render('login');
 });
 
