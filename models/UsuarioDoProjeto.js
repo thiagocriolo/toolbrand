@@ -27,6 +27,10 @@ const UsuarioDoProjeto = db.define('usuarioDoProjeto',{
         timestamps: false,
     }
 );
+  // Associações
+  UsuarioDoProjeto.associate = function(models) {
+    UsuarioDoProjeto.belongsToMany(models.Projeto, { foreignKey: 'id_projeto' });
+    UsuarioDoProjeto.belongsToMany(models.User, { foreignKey: 'id_usuario' });
+};
 
-
-module.exports = UsuarioDoProjeto
+module.exports = UsuarioDoProjeto;

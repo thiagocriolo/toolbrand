@@ -26,6 +26,10 @@ const Projeto = db.define('projeto',{
     },  
     id_usuario:{
         type: Sequelize.INTEGER,
+        references: {
+            model: 'users', // Nome da tabela de etapas
+            key: 'id'
+        }
     },
     
 },
@@ -36,9 +40,10 @@ const Projeto = db.define('projeto',{
     timestamps: false,
 });
 
+
 // Associações
 Projeto.associate = function(models) {
-    Projeto.belongsToMany(models.User, { through: models.UsuarioDoProjeto, foreignKey: 'id_projeto' });
+    Projeto.belongsTo(models.User, { foreignKey: 'id_usuario' });
 };
 
 module.exports = Projeto
