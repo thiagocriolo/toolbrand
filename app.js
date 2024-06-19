@@ -65,3 +65,7 @@ app.use('/fases', require('./routes/fases'));
 // usuariosDoProjeto routes
 app.use('/usuariosDoProjeto', require('./routes/usuariosDoProjeto'));
 
+
+// cards routes
+app.use('/cards', require('./routes/cards'));
+
