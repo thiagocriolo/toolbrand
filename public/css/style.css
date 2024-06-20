@@ -274,19 +274,19 @@ input[type="radio"]:checked + label img{
 }
 
 .fase #diagnostico {
-	background-image: url("images/Fases_Diagnóstico.svg");
+	background-image: url("../images/Fases_Diagnóstico.svg");
 }
 
 .fase #estrategia {
-	background-image: url("images/Fases_Estratégia.svg");
+	background-image: url("../images/Fases_Estratégia.svg");
 }
 
 .fase #criacao {
-	background-image: url("images/Fases_Criação.svg");
+	background-image: url("../images/Fases_Criação.svg");
 }
 
 .fase #desdobramentos {
-	background-image: url("images/Fases_Desdobramentos.svg");
+	background-image: url("../images/Fases_Desdobramentos.svg");
 }
 
 .fase>.row {

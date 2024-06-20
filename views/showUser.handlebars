@@ -147,17 +147,18 @@
 				</nav>
 			</div>
 
-            <div class="text-center">
-                <h1 class="">Usuario </h1>
-                <h3 class="fw-bold">{{user.dataValues.id}}</h3>
-            </div>
+		
+			<div class="text-center">
+				<h1 class="">Projetos na liderança de  </h1>
+				<h3 class="fw-bold">{{user.dataValues.nome}}</h3>
+			</div>
 
 			<div class="dashboard h-100 col-11">
 				<div class="boxcontainer  h-75 w-75 position-absolute top-50 start-50 translate-middle ">
 					<div class="container h-100 text-center">
 						<div class="row h-100 align-items-center " style="display:flex">
-                            
-                            {{#each projetos}}
+							
+							{{#each projetosLider}}
 									
 								<div class="caixaprojeto col-3">
 									
@@ -208,7 +209,7 @@
 									</div>
 								</div>
 									
-                        	{{/each}}
+							{{/each}}
 							<div class="caixaprojeto col-3">
 								<div class="dashbox">
 									<div class="projetoescopo">
@@ -223,7 +224,87 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> 
+		
+		
+			{{!-- ======================  projetos como colaborador  ============================= --}}
+
+				<div class="text-center" style="margin-top: 100px;">
+					<h1 class="">Projetos em colaboração   </h1>
+				</div>
+
+				<div class="dashboard h-100 col-11">
+					<div class="boxcontainer  h-75 w-75 position-absolute top-50 start-50 translate-middle ">
+						<div class="container h-100 text-center">
+							<div class="row h-100 align-items-center " style="display:flex">
+								
+								{{#each colabs}}
+										
+									<div class="caixaprojeto col-3">
+										
+										<div class="dashbox">
+											<div class="projetoescopo">
+												<div class=" col position-relative">
+													
+													<div class="projetoheader">
+														<h2>{{this.nome}}</h2>
+														<h5>Status: 
+															<span class="fw-bold">
+															
+																Em andamento
+																															
+															</span>
+														</h5>
+													</div>
+													
+													<div class="projetobody">
+														<p>Pequeno brifing sobre o cliente e a conta.
+														</p>
+													</div>
+													<div class="progresso">
+														<div class="inside"></div>
+													</div>
+													<div class="projetorodape container-fluid">
+														<div class="row">
+															<div class="col-6 align-items-start">
+																<div class="equipe projetocolaboradores">
+																	<a href="#">
+																		<img src="/images/Avatars/avatars_1.png">
+																		<img src="/images/Avatars/avatars_2.png">
+																		<img src="/images/Avatars/avatars_3.png">
+																		<span> + 4</span>
+																	</a>
+																</div>
+															</div>
+															<div class="col-6 align-items-end alinhardireita">{{this.data_fim}}</div>
+														</div>
+													</div>
+													<button class="clearfix btn-primary btn">
+														<i class="bi bi-columns"></i> Editar Projeto
+													</button>
+												</div>
+											</div>
+											<a class="btn btn-primary" href="/projetos/show/{{../user.dataValues.id}}/{{this.id}}">Ver projeto</a>
+
+										</div>
+									</div>
+								{{/each}}
+								<div class="caixaprojeto col-3">
+									<div class="dashbox">
+										<div class="projetoescopo">
+											<div class="projetovazio">
+												<button type="button" class="btn " data-bs-toggle="modal"
+													data-bs-target="#cadastraProjeto{{user.dataValues.id}}" data-bs-whatever="@getbootstrap"><i class="bi bi-plus-circle-fill"></i></button>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
 		</div>
 	</div>
 
