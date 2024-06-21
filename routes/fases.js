@@ -49,22 +49,14 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
         // Irá para view para filtrar o que o lider pode editar baseado na variavel
         const usuarioLider = await UsuarioDoProjeto.findOne({
             where: {
-                id_usuario: id_usuario_logado,
                 id_projeto: id_projeto,
                 tipo_usuario: { [Op.ne]: 1 }
             }
         });
 
-        //Supondo que o ID do projeto é passado como query param (por exemplo, /faseUm?projetoId=1)
-        const buscaLider = await UsuarioDoProjeto.findOne({
-            where: {
-                id_projeto: id_projeto,
-                tipo_usuario: { [Op.ne]: 1 }
-            }
-        });
-        const imprimeLider = await User.findOne({
+        const liderProjeto = await User.findOne({
             where:{
-                id: buscaLider.id_usuario
+                id: usuarioLider.id_usuario
             }
         });
         
@@ -93,7 +85,7 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
             id_usuario_logado, 
             pode_editar: pode_editar ? pode_editar.pode_editar : true,  // Passando apenas o ID ou null 
             pode_colaborar: pode_colaborar ? pode_colaborar.pode_colaborar : true,  // Passando apenas o ID ou null 
-            imprimeLider, 
+            liderProjeto, 
             imprimeTodosUsuarios,
             usuarioLider,
             cards

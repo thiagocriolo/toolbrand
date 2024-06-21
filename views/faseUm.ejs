@@ -115,7 +115,7 @@
 										
 										<h2>1. Diagnóstico</h2>
 										<h5>Status: <span>Em andamento </span></h5>
-										<span>Lider: <%- imprimeLider.nome %><span> </span></span>
+										<span>Lider: <%- liderProjeto.nome %><span> </span></span>
 										<div class="progresso">
 											<div class="inside">100</div>
 										</div>
@@ -188,8 +188,10 @@
 		
 																			<% } %>
 																		<% } %>
+																				
 
-																		<% if (usuarioLider) { %>
+																	
+																		<% if (liderProjeto.id_usuario === id_usuario_logado) { %>
 																			<% if (card.aprovacao === true) { %>
 																				<h5 class="text-warning">Aprovado</h5>
 																			<% } else { %>
@@ -331,8 +333,8 @@
 											<p>Usuário não tem permissão para edir.</p>
 										<% } %>
 
-										<% if (imprimeLider) { %>
-											<p>ID do lider: <%= imprimeLider.nome %></p>
+										<% if (liderProjeto) { %>
+											<p>ID do lider: <%= liderProjeto.nome %></p>
 										<% } else { %>
 											<p>Usuário não tem permissão para colaborar.</p>
 										<% } %>
