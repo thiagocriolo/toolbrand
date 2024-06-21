@@ -11,28 +11,7 @@ const { where, Op  } = require('sequelize');
 // Definindo a rota para '/faseUm'
 router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
     const { id_usuario_logado, id_projeto } = req.params;
-    console.log(`
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~
-            |                        |
-            |  ESTOU AQUI: A SUA     |
-            |      RESPOSTA          |
-            |                        |
-            |          ( ( (         |
-            |            ) ) )       |
-            |          .........     |
-            |          |       |]    |
-            |          \\  \\  /     |
-            |           \\  \\/      |
-            |            \\ |        |
-            |            | |         |
-            |            | |         |
-            |           _|_|_        |
-            |                        |
-            |  Usuário Líder Logado: |
-            |                        |
-            |                        |
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~
-            `+id_usuario_logado);
+    
     try {
 
         // Supondo que o ID do projeto é passado como query param (por exemplo, /faseUm?projetoId=1        
@@ -72,9 +51,10 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
             where: {
                 id_usuario: id_usuario_logado,
                 id_projeto: id_projeto,
-                tipo_usuario: { [Op.ne]: 1 }
+                tipo_usuario: 1
             }
         });
+
         if(usuarioLiderLogado){
 
             console.log(`
@@ -121,6 +101,7 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
         }
 
             
+        
         //Supondo que o ID do projeto é passado como query param (por exemplo, /faseUm?projetoId=1)
         const buscaLider = await UsuarioDoProjeto.findOne({
             where: {

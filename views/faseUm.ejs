@@ -190,8 +190,9 @@
 																		<% } %>
 																				
 
-																	
-																		<% if (usuarioLiderLogado) { %>
+																		<h5><%= usuarioLiderLogado.id_usuario %></h5>
+
+																		<% if (usuarioLiderLogado && usuarioLiderLogado.id_usuario === id_usuario_logado) { %>
 
 																			<% if (card.aprovacao === true) { %>
 																				<h5 class="text-warning">Aprovado</h5>
