@@ -29,7 +29,7 @@ const User = db.define('user',{
 // Associações
 User.associate = function(models) {
     User.belongsToMany(models.Projeto, { through: models.UsuarioDoProjeto, foreignKey: 'id_usuario' });
+    User.hasMany(models.UsuarioDoProjeto, { foreignKey: 'id_usuario' });
 };
-
 
 module.exports = User

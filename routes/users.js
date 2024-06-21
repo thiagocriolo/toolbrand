@@ -13,33 +13,6 @@ router.get('/register', (req, res) => {
     res.render('register');
 })
 
-// router.get('/show/:id', (req, res) => {
-    
-//     User.findOne({
-//         where: { id: req.params.id }
-//     }).then(user => {
-//         if (!user) {
-//             return res.status(404).send('Usuário não encontrado');
-//         }
-
-//         Projeto.findAll({
-//             where: { 
-//                 id_usuario: req.params.id 
-//             } 
-//         }).then(projetos => {
-//             res.render('showUser', {
-//                 user, 
-//                 projetos
-//             });
-//         }).catch(err => {
-//             console.log(err);
-//             res.status(500).send('Erro ao recuperar projetos');
-//         });
-//     }).catch(err => {
-//         console.log(err);
-//         res.status(500).send('Erro ao recuperar usuário');
-//     });
-// });
 
 router.get('/show/:id', async (req, res) => {
     try {

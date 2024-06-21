@@ -70,8 +70,7 @@
 					</div>
 				</nav>
 			</div>
-
-
+			
 			<div class="dashboard h-100 col-11 d-flex align-items-center">
 				<div class="boxcontainer h-75 mx-auto">
 					<div class="container h-100 text-center">
@@ -98,10 +97,12 @@
 											</a>
 										</div>
 									</div>
+
 									<div class="col-9 cabecarioprojeto">
+										
 										<h2>1. Diagnóstico</h2>
 										<h5>Status: <span>Em andamento </span></h5>
-										<h5>Lider: {{usuarioProjetoLider.id}}<span> </span></h5>
+										<span>Lider: {{imprimeLider.nome}}<span> </span></span>
 										<div class="progresso">
 											<div class="inside">100</div>
 										</div>
@@ -111,7 +112,10 @@
 									</div>
 								</div>
 							</div>
+							
+
 							<div class="etapas h-75">
+
 								<div class="row h-100 concluido " id="diagnostico">
 									{{#each etapas}}
 									   
@@ -229,8 +233,27 @@
 											</div>
 										</div>
 				
-									 {{/each}}
-  
+									{{/each}}
+
+  										{{#if pode_colaborar}}
+											<p>ID de Pode Colaborar: {{pode_colaborar}}</p>
+										{{else}}
+											<p>Usuário não tem permissão para colaborar.</p>
+										{{/if}}
+										{{#if pode_editar}}
+											<p>ID de Pode editar: {{pode_editar}}</p>
+										{{else}}
+											<p>Usuário não tem permissão para colaborar.</p>
+										{{/if}}
+										{{#if imprimeLider}}
+											<p>Nome do lider: {{imprimeLider.nome}}</p>
+										{{else}}
+											<p>Usuário não tem permissão para colaborar.</p>
+										{{/if}}
+
+										{{#each imprimeTodosUsuarios}}
+											<span class="fw-bold">{{this.nome}},</span>
+										{{/each}}
 								</div>
 
 							</div>
