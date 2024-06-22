@@ -57,6 +57,9 @@ app.use('/usuariosDoProjeto', require('./routes/usuariosDoProjeto'));
 // cards routes
 app.use('/cards', require('./routes/cards'));
 
+// cards routes
+app.use('/comentarios', require('./routes/comentarios'));
+
 app.listen(PORT, function () {
     console.log(`O express está rodando na porta ${PORT}`);
 });
