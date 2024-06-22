@@ -150,7 +150,7 @@ router.get('/faseDois/:id_usuario_logado/:id_projeto', async (req, res) => {
         const etapas = await Etapa.findAll({
             where: {
                 id: {
-                    [Op.between]: [1, 4] // Seleciona IDs de 1 a 4
+                    [Op.between]: [5, 8] // Seleciona IDs de 1 a 4
                 }
             }
         });
