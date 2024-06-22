@@ -15,7 +15,7 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
     
     try {
 
-        // Supondo que o ID do projeto é passado como query param (por exemplo, /faseUm?projetoId=1        
+        // Envia todas as etapas         
         const etapas = await Etapa.findAll({
             where: {
                 id: {
@@ -24,14 +24,14 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
             }
         });
 
-        // Supondo que o ID do projeto é passado como query param (por exemplo, /faseUm?projetoId=1        
+        // Envia todas os cards            
         const cards = await Card.findAll({
             where: {
                 id_projeto: id_projeto,
             }
         });
 
-        // Irá para view para filtrar o que o usuario pode editar baseado na variavel
+        // Verifica se pode editar
         const pode_editar = await UsuarioDoProjeto.findOne({
             where: {
                 id_usuario: id_usuario_logado,
@@ -39,7 +39,7 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
                 pode_editar: { [Op.ne]: 1 }
             }
         });
-        // Irá para view para filtrar o que o usuario pode editar baseado na variavel
+        // Verifica se pode colaborar
         const pode_colaborar = await UsuarioDoProjeto.findOne({
             where: {
                 id_usuario: id_usuario_logado,
@@ -47,7 +47,7 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
                 pode_colaborar: { [Op.ne]: 1 }
             }
         }); 
-        // Irá para view para filtrar o que o lider pode editar baseado na variavel
+        // Verifica se Aprovar o card, baseado em permissão 
         const usuarioLiderLogado = await UsuarioDoProjeto.findOne({
             where: {
                 id_usuario: id_usuario_logado,
@@ -60,7 +60,7 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
         const liderLogado = usuarioLiderLogado ? true : false;
          
 
-        //Supondo que o ID do projeto é passado como query param (por exemplo, /faseUm?projetoId=1)
+        // Imprime o usuario lider nome na nossa view independente de estar logado
         const buscaLider = await UsuarioDoProjeto.findOne({
             where: {
                 id_projeto: id_projeto,
@@ -82,11 +82,31 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
             }
         });// Mandando para a view todos os usuarios do projeto
         
-        const todosComentariosDoCard = await Comentario.findAll({
+
+
+
+        const todosComentariosDoProjeto = await Comentario.findAll({
             where: {
                 id_projeto: id_projeto,
             }
         });
+        // for(const comentario of todosComentariosDoProjeto){
+        //     console.log(`
+        //         +--------------------------------------------+
+        //         |               Dados da Requisição          |
+        //         +--------------------------------------------+
+                
+        //         Comentarios:
+        //         ID: ${comentario.comentario}
+            
+        //         +--------------------------------------------+
+        //         |                                            |
+        //         +--------------------------------------------+
+        //        `);
+        // }
+      
+        
+
         
         // Adicionando a uma variavel todos os usuarios, para usar o id como parametro no imprime todos
         const idsUsuarios = todosUsuariosDoProjeto.map(usuario => usuario.id_usuario);
@@ -109,7 +129,8 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
             imprimeLider, 
             imprimeTodosUsuarios,
             liderLogado,
-            cards
+            cards,
+            todosComentariosDoProjeto
         });
 
 

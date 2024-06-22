@@ -225,7 +225,30 @@
 																			</form>
 																		</div>
 
-		
+																		<div class="text-center fw-bold">
+																			<h5 class="fw-bold">comentarios</h5>
+																		</div>
+
+																		<% todosComentariosDoProjeto.forEach(function(comentario) { %>
+
+																			<% if (comentario.id_card === card.id) { %>
+
+																				<h5><%= comentario.comentario %></h5>
+
+																				<% imprimeTodosUsuarios.forEach(function(usuarioImpresso) { %>
+
+																					<% if (usuarioImpresso.id === comentario.id_usuario) { %>
+
+																						<h5><%= usuarioImpresso.nome %></h5>
+
+																					<% } %>
+
+																				<% }); %>
+
+																			<% } %>
+
+																		<% }); %>
+																		
 																	</div>
 																	<div class="modal-footer">
 																		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
