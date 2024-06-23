@@ -2,7 +2,7 @@
 	--primary-color: #485eff;
 	--verde: #4ccc6d;
 	--azul: #485eff;
-	--amarelo: #f6a841;
+	--amarelo: #ffbb00;
 	--cinza: #999999;
   }
 
@@ -218,6 +218,7 @@ input[type="radio"]:checked + label img{
 
 .projetoescopo .dashbox {
 	height: 100%;
+	padding-bottom: 50px;
 }
 
 
@@ -255,10 +256,39 @@ input[type="radio"]:checked + label img{
 	color: var(--primary-color);
 }
 
+
+.proj-dash-buttons .olho {
+	background-color: var(--primary-color) !important;
+    border: none;
+    color: #ffffff;
+    padding: 6px 9px 0px !important;
+    text-align: center;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.proj-dash-buttons .segundo a{
+	margin-left: auto;
+	background-color: var(--verde);
+	color: #ffffff;
+	font-weight: 500;
+	border: none;
+}
+
+
+.th-contens {
+	display: contents;
+}
+
 .projetoescopo .btn.btn-primary {
 	font-family: "poppins";
     border-radius: 10em;
     padding: 10px 20px;
+	
+}
+
+.projetopagina .btn	 {
+	width: 75%;
 }
 
 .projetoescopo span {
@@ -269,9 +299,6 @@ input[type="radio"]:checked + label img{
 	font-weight: 700;
 }
 
-.fase {
-	padding: 10px;
-}
 
 .fase #diagnostico {
 	background-image: url("../images/Fases_Diagnóstico.svg");
@@ -331,8 +358,9 @@ input[type="radio"]:checked + label img{
 	font-weight: 400;
 	font-size: 16px;
 	margin: 0;
-	margin-bottom: 20px
 }
+
+
 
 
 .caixaprojeto>.dashbox h5  {
@@ -347,6 +375,16 @@ input[type="radio"]:checked + label img{
 .caixaprojeto>.dashbox button {
 	margin-top: 20px;
     text-align: center;
+}
+
+.projlider h1{
+	margin-bottom: 50px;
+    text-align: left;
+    color: #ffff;
+}
+
+.projetovazio.row {
+	margin: 0 !important;
 }
 
 
@@ -471,7 +509,45 @@ input[type="radio"]:checked + label img{
     font-weight: 300;
 }
 
-.cartao.cardadd {
+a.cartaoadd i {
+	font-size: 2em;
+    margin-top: 0.1em;
+}
+
+a.cartaoadd {
+	padding: 1em;
+	color: #fff;
+	background-color: var(--verde);
+	cursor: pointer;
+}
+
+a.cartaoadd:hover {
+	color: var(--azul);
+	background-color: var(--amarelo);
+	font-weight: 500;
+}
+
+a.cartaoadd:active {
+	color: #fff;
+	background-color: var(--azul);
+	font-weight: 400;
+}
+
+a.cartaoadd span {
+	width: 1.8em;
+	height: 1.8em;
+	color: var(--verde);
+}
+
+a.cartaoadd:hover span {
+	color: var(--azul);
+}
+
+a.cartaoadd:active span {
+	color: var(--azul);
+}
+
+.cartao .cardadd {
 	background-color: var(--verde);
 	color: #fff;
 }
@@ -492,13 +568,10 @@ input[type="radio"]:checked + label img{
     padding-bottom: 20px;
 }
 
-.cartao i {
-	font-size: 20px;
-}
+
 
 .cartao {
 	background-color: #dedede;
-	border-radius: 10px;
 	margin-bottom: 10px;
 }
 

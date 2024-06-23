@@ -148,7 +148,7 @@
 
 													<% if (card.id_etapa===etapa.id) { %>
 														<div class="tarefario">
-															<div class="cartao" data-bs-toggle="modal"
+															<div class="cartao rounded-4" data-bs-toggle="modal"
 																data-bs-target="#verCard<%= card.id %>">
 																<div class="row ">
 																	<div
@@ -352,32 +352,16 @@
 
 																<% }); %>
 
-																	<div class="cartao cardadd">
-																		<div class="row ">
-																			<div
-																				class="d-flex align-items-center bd-highlight ">
+																<a class="align-middle cartaoadd mb-3 rounded-4 d-flex align-items-center"
+																		data-bs-toggle="modal"
+																		data-bs-target="#criaCard<%= etapa.id %>">
+																		Adicionar tarefa
+																		<span class="bg-light ms-auto rounded-5 d-flex align-items-center justify-content-center">
+																			<i class="bi bi-plus"></i>
+																		</span>
+																	</a>
 
-																				<div
-																					class="p-2 bd-highlight col-10  cardsessao cardtitulo">
-																					<a class="align-middle"
-																						data-bs-toggle="modal"
-																						data-bs-target="#criaCard<%= etapa.id %>">
-																						Adicionar
-																					</a>
-
-																				</div>
-
-
-																				<div
-																					class="p-2 bd-highlight col-2 cardsessao cardtarefa">
-																					<i class="bi bi-plus-circle"></i>
-																				</div>
-
-																			</div>
-
-
-																		</div>
-																	</div>
+																	
 														</div>
 
 
