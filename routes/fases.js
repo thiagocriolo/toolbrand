@@ -146,6 +146,74 @@ router.get('/faseDois/:id_usuario_logado/:id_projeto', async (req, res) => {
     
     try {
 
+
+        router.get('/show/:id', async (req, res) => {
+            try {
+                // Buscar o usuário pelo ID
+                const user = await User.findOne({
+                    where: { id: req.params.id }
+                });
+        
+                if (!user) {
+                    return res.status(404).send('Usuário não encontrado');
+                }
+        
+                // Buscar todas as associações do usuário na tabela usuario_do_projeto
+                const usuarioProjetos = await UsuarioDoProjeto.findAll({
+                    where: { id_usuario: req.params.id }
+                });
+        
+                // Filtrar os projetos onde o usuário é líder
+                const projetosLiderIds = usuarioProjetos
+                    .filter(up => up.tipo_usuario === 1)
+                    .map(up => up.id_projeto);
+        
+                // Filtrar os projetos onde o usuário é colaborador
+                const colabsIds = usuarioProjetos
+                    .filter(up => up.tipo_usuario !== 1)
+                    .map(up => up.id_projeto);
+        
+                // Buscar os projetos onde o usuário é líder
+                const projetosLider = await Projeto.findAll({
+                    where: {
+                        id: projetosLiderIds
+                    }
+                });
+        
+                // Buscar os projetos onde o usuário é colaborador
+                const colabs = await Projeto.findAll({
+                    where: {
+                        id: colabsIds
+                    }
+                });
+        
+                // Renderizar a view com os dados do usuário, projetos como líder e projetos como colaborador
+                res.render('showUser', {
+                    user,
+                    projetosLider,
+                    colabs
+                });
+            } catch (err) {
+                console.log(err);
+                res.status(500).send('Erro ao recuperar dados do usuário');
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // Supondo que o ID do projeto é passado como query param (por exemplo, /faseDois?projetoId=1        
         const etapas = await Etapa.findAll({
             where: {

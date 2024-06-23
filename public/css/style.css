@@ -261,9 +261,11 @@ input[type="radio"]:checked + label img{
 	background-color: var(--primary-color) !important;
     border: none;
     color: #ffffff;
-    padding: 6px 9px 0px !important;
+	height: 2em;
+    width: 2em;
+    padding: 7px 0px 0px 0px !important;
+    font-size: 1.2em;
     text-align: center;
-    font-size: 26px;
     cursor: pointer;
 }
 
@@ -273,6 +275,10 @@ input[type="radio"]:checked + label img{
 	color: #ffffff;
 	font-weight: 500;
 	border: none;
+
+	height: 2.4em;
+    font-size: 1em;
+    padding: 0.5em 0.9em;
 }
 
 
@@ -283,8 +289,7 @@ input[type="radio"]:checked + label img{
 .projetoescopo .btn.btn-primary {
 	font-family: "poppins";
     border-radius: 10em;
-    padding: 10px 20px;
-	
+/*    padding: 10px 20px; */
 }
 
 .projetopagina .btn	 {
@@ -368,7 +373,7 @@ input[type="radio"]:checked + label img{
 
 }
 
-.caixaprojeto>.dashbox .projetoheader {
+.projetoheader {
 	text-align: left;
 }
 
@@ -377,7 +382,17 @@ input[type="radio"]:checked + label img{
     text-align: center;
 }
 
-.projlider h1{
+.projlider {
+	padding-bottom: 30px;
+    border-bottom: 2px solid #fff;
+}
+
+.projcolab {
+	margin-top: 50px;
+	padding-bottom: 50px ;
+}
+
+.projetos h1{
 	margin-bottom: 50px;
     text-align: left;
     color: #ffff;
@@ -487,6 +502,11 @@ input[type="radio"]:checked + label img{
 
 .caixaprojeto.col-3 {
     padding-bottom: 30px;
+}
+
+.etapadoprojeto {
+	padding: 0px 10px;
+	margin-bottom: 20px;
 }
 
 .etapaheader {

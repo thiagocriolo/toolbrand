@@ -74,6 +74,7 @@ router.get('/show/:id_usuario/:id_projeto', async (req, res) => {
             }
         });
 
+   
 
         // Agora busca o projeto com os dados atualizados
         const projeto = await Projeto.findOne({

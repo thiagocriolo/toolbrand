@@ -117,75 +117,8 @@
 		</div>
 
 		<div class="row min-vh-100 h-100 align-items-center">
-			<div class="sidebar col-1">
-				<nav class="navbar col mw-2 bg-body-tertiary fixed-top">
-					<div class="container-fluid min-vh-100">
-						<div class="avatarheader mb-auto mt-3">
-							<img src="/images/Avatars/avatars_2.png">
-						</div>
 
-						<button class="navbar-toggler mb-4" type="button" data-bs-toggle="offcanvas"
-							data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
-							aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-
-						<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
-							aria-labelledby="offcanvasNavbarLabel">
-							<button type="button" class="btn-close text-reset ms-auto p-2" data-bs-dismiss="offcanvas"
-								aria-label="Close"></button>
-							<div class="offcanvas-header">
-								<div class="perfilmenu">
-									<div class="avatarmenu mb-auto mt-3">
-										<img src="/images/Avatars/avatars_2.png">
-									</div>
-									<h4 class="offcanvas-title d-none d-sm-block" id="offcanvas">Fulano de tal</h4>
-									<h5 class="d-none d-sm-block" id="offcanvas">Profissão</h5>
-								</div>
-							</div>
-
-							<div class="offcanvas-body">
-								<ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
-									<li class="nav-item">
-										<a href="#" class="nav-link text-truncate">
-											<i class="bi bi-person-circle"></i><span
-												class="ms-1 d-none d-sm-inline">Editar
-												Perfil</span>
-										</a>
-									</li>
-									<li>
-										<a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-truncate">
-											<i class="bi bi-columns"></i><span
-												class="ms-1 d-none d-sm-inline">Projetos</span>
-										</a>
-									</li>
-									<li>
-										<a href="#" class="nav-link text-truncate">
-											<i class="bi bi-list-task"></i><span
-												class="ms-1 d-none d-sm-inline">Tarefas</span></a>
-									</li>
-									<li>
-										<a href="#" class="nav-link text-truncate">
-											<i class="bi bi-calendar-heart"></i><span
-												class="ms-1 d-none d-sm-inline">Calendário</span></a>
-									</li>
-									<li>
-										<a href="#" class="nav-link text-truncate">
-											<i class="bi bi-gear"></i><span
-												class="ms-1 d-none d-sm-inline">Configurações</span>
-										</a>
-									</li>
-								</ul>
-
-							</div>
-							<div class="offcanvasfooter align-items-center">
-								<img class="w-50 p-4" src="/images/toolbrand_blue.svg">
-								<p>ToolBrand 2024 © Todos os Direitos Reservados</p>
-							</div>
-						</div>
-					</div>
-				</nav>
-			</div>
+			<div> <%- include('partials/navbar.ejs') %> </div>
 
 
 			<div class="dashboard h-100 col-11 d-xl-flex align-items-center">
@@ -205,7 +138,7 @@
 											</h4>
 
 										</div>
-										<div class="projetobody">
+										<div class="projetobody mt-4 mb-4">
 											<p>
 												<%= projeto.descricao %>
 											</p>
@@ -237,7 +170,7 @@
 											</button>
 										</div>
 
-										
+
 									</div>
 								</div>
 							</div>
