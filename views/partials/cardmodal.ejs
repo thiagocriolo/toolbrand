@@ -1,0 +1,149 @@
+<% cards.forEach(function(card) { %>
+	<% if (card.id_etapa===etapa.id) { %>
+		<div class="cartao rounded-4" data-bs-toggle="modal" data-bs-target="#verCard<%= card.id %>">
+			<div class="row ">
+				<div class="d-flex align-items-center bd-highlight ">
+					<div class="p-2 bd-highlight col-2 cardsessao cardcolab">
+						<img src="/images/Avatars/avatars_1.png">
+					</div>
+					<div class="p-2 bd-highlight col-8 cardsessao cardtitulo">
+						<span class="align-middle">
+							<%= card.nome_card %>
+						</span>
+					</div>
+					<div class="p-2 bd-highlight col-2 cardsessao cardtarefa">
+						<i class="bi bi-circle"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal -->
+		<div class="modal fade modal_Z_index" id="verCard<%= card.id %>" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">
+							Tarefa <%= etapa.id %>
+						</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+
+						<h5>
+							<%= card.nome_card %>
+						</h5>
+						<h5>
+							<%= card.solicitacao %>
+						</h5>
+						<% if (pode_colaborar) { %>
+							<% if (card.colaboracao) { %>
+								<h5>
+									<%= card.colaboracao %>
+								</h5>
+								<% } else { %>
+									<div class="text-center">
+										<form class="telaform"
+											action="/cards/update/<%= id_usuario_logado %>/<%= id_projeto %>/<%= card.id %>"
+											method="POST">
+											<div>
+												<textarea name="colaboracao" id="colaboracao"></textarea>
+											</div>
+											<button type="submit" class="btn btn-sm btn-primary">Salvar
+												colaboração</button>
+										</form>
+									</div>
+									<% } %>
+										<% } %>
+											<% if (liderLogado) { %>
+												<% if (card.aprovacao===true) { %>
+													<h5 class="text-warning">
+														Aprovado
+													</h5>
+													<% } else { %>
+														<div class="text-center">
+															<form class="telaform"
+																action="/cards/update/<%= id_usuario_logado %>/<%= id_projeto %>/<%= card.id %>"
+																method="POST">
+
+																<div class="mb-3">
+																	<p class="fw-bold">
+																		Aprovar
+																	</p>
+																	<div class="form-check">
+																		<input name="aprovacao" class="form-check-input"
+																			type="checkbox" value="1" id="aprovacao">
+																		<label class="form-check-label"
+																			for="aprovacao">Sim</label>
+																	</div>
+																</div>
+
+																<button type="submit"
+																	class="btn btn-sm btn-primary">Aprovar</button>
+
+															</form>
+														</div>
+
+														<% } %>
+															<% } %>
+
+																<div class="text-center">
+																	<form class="telaform"
+																		action="/comentarios/add/<%= id_usuario_logado %>/<%= id_projeto %>/<%= card.id %>"
+																		method="POST">
+																		<div>
+																			<textarea name="comentario"
+																				id="comentario"></textarea>
+																		</div>
+																		<button type="submit"
+																			class="btn btn-sm btn-primary">Salvar
+																			comentario</button>
+																	</form>
+																</div>
+
+																<div class="text-center fw-bold">
+																	<h5 class="fw-bold">
+																		comentarios
+																	</h5>
+																</div>
+
+																<% todosComentariosDoProjeto.forEach(function(comentario){
+																	%>
+
+																	<% if (comentario.id_card===card.id) { %>
+
+																		<h5>
+																			<%= comentario.comentario %>
+																		</h5>
+
+																		<% imprimeTodosUsuarios.forEach(function(usuarioImpresso)
+																			{ %>
+
+																			<% if
+																				(usuarioImpresso.id===comentario.id_usuario)
+																				{ %>
+
+																				<h5>
+																					<%= usuarioImpresso.nome %>
+																				</h5>
+
+																				<% } %>
+
+																					<% }); %>
+
+																						<% } %>
+
+																							<% }); %>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save
+							changes</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<% } }); %>

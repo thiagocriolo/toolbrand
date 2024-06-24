@@ -439,7 +439,7 @@ input[type="radio"]:checked + label img{
 }
 
 
-.fase>.row a{
+.projetofase .fase>.row a{
 	background-color: var(--cinza);
     color: #fff;
     text-decoration: none;
@@ -521,13 +521,35 @@ input[type="radio"]:checked + label img{
 	padding: 10px 0px;
 }
 
-.anexos a {
+.anexos .col-4 {
+	padding: 0px 0.2em;
+}
+
+.dashbox .anexos a {
 	background-color: var(--verde);
+}
+
+.anexos a {
     padding: 5px;
     border-radius: 5px;
     color: #fff;
     font-weight: 300;
+	width: 100%;
+    display: block;
+	font-size: 14px;
 }
+
+/*
+button.addicon span {
+    width: 1.8em;
+    height: 1.8em;
+}
+
+button.addicon span {
+	font-size: 2em;
+	margin-top: 0.1em;
+	color: var(--azul);
+} */
 
 a.cartaoadd i {
 	font-size: 2em;
@@ -541,13 +563,13 @@ a.cartaoadd {
 	cursor: pointer;
 }
 
-a.cartaoadd:hover {
+a.cartaoadd:active {
 	color: var(--azul);
 	background-color: var(--amarelo);
 	font-weight: 500;
 }
 
-a.cartaoadd:active {
+a.cartaoadd:hover {
 	color: #fff;
 	background-color: var(--azul);
 	font-weight: 400;
@@ -606,4 +628,73 @@ a.cartaoadd:active span {
 
 .cardtitulo {
 	text-align: left;
+}
+
+.solicitacao {
+	min-height: 100px;
+    padding: 15px;
+    text-align: left;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.solidesc {
+    background-color: #dddddd;
+}
+
+.solifeita {
+	background-color: #eeeeee;
+    border: 2px solid var(--verde);
+	color: #222;
+}
+
+.solimais {
+	color: #aaa;
+	border: 2px solid #ccc;
+}
+
+.solimais::placeholder 	{
+	color: #aaa;
+}
+
+.tarefaview textarea{
+	width: 100%;
+    min-height: 100px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+}
+
+
+
+.tarefaview form {
+	text-align: right;
+}
+
+.solicitacao span {
+	font-weight: 600;
+}
+
+.comentarios {
+	background-color: #dfdbff;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.comentarios>* {
+	display: inline;
+    font-size: 16px;
+}
+
+.comentarios h5 {
+	font-weight: 700;
+}
+
+.salvarcard {
+	width: 100%;
+    background-color: var(--verde);
+    border-color: var(--verde);
 }
