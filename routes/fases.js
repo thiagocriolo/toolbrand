@@ -128,7 +128,7 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
         const quantidadeDeCardsAprovados = await Card.count({
             where: {
                 id_projeto: id_projeto,
-                aprovacao: 1,
+                aprovacao: {[Op.ne] : 0},
             }
         });
 
