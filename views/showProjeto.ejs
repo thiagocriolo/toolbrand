@@ -28,10 +28,19 @@
 
 					<div class="modal-body">
 							<div class="mb-3">
+								
+								<% ImprimeTodosUsuariosDoProjeto.forEach(function(usuarioDoProjeto) { %>
 									<ul class="listacolab">
-										<li>Colaborador 01 <button class="btn close"><i class="bi bi-x-circle-fill"></i></button></li>
-										<li>Colaborador 02</li>
+										<li>
+											<%= usuarioDoProjeto.nome %> 
+											<form action="/usuariosDoProjeto/delete/<%= user.id %>/<%= projeto.id %>/<%= usuarioDoProjeto.id %>" method="POST" style="display:inline;">
+												<button type="submit" class="btn close"><i class="bi bi-x-circle-fill"></i></button>
+											</form>									
+										</li>
 									</ul>
+
+								<% }); %>
+
 							</div>
 							<div class="mt-1 proj-dash-buttons">
 								<button class="clearfix btn-primary btn" data-bs-toggle="modal"
@@ -66,7 +75,7 @@
 										</option>
 										<% }); %>
 								</select>
-							</div>
+							</div> 
 
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"

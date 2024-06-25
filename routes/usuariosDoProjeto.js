@@ -25,6 +25,23 @@ router.post('/add/:id_usuario_logado/:id_projeto', (req, res) => {
     
 });
 
+// Remove um usuário do projeto através da form
+router.post('/delete/:id_usuario_logado/:id_projeto/:id_usuario', (req, res) => {
+    const { id_usuario_logado, id_projeto, id_usuario } = req.params;
+
+    UsuarioDoProjeto.destroy({
+        where: {
+            id_usuario: id_usuario,
+            id_projeto: id_projeto
+        }
+    })
+    .then(() => res.redirect(`/projetos/show/${id_usuario_logado}/${id_projeto}`))
+    .catch(err => {
+        console.error('Erro ao excluir o usuário do projeto:', err);
+        res.status(500).send('Erro no servidor');
+    });
+});
+
 
 
 module.exports = router

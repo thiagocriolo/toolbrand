@@ -95,6 +95,25 @@ router.get('/show/:id_usuario/:id_projeto', async (req, res) => {
             }
         });
 
+       
+        const UsuariosDoProjeto = await UsuarioDoProjeto.findAll({
+            where: {
+                id_projeto: id_projeto,
+            }
+        });       
+        const todosIdsColabs = UsuariosDoProjeto
+        .filter(up => up.tipo_usuario !== 1)
+        .map(up => up.id_usuario);
+        
+         // Buscar os projetos onde o usuário é líder
+         const ImprimeTodosUsuariosDoProjeto = await User.findAll({
+            where: {
+                id: todosIdsColabs
+            }
+        });
+        
+        // Mandando para a view todos os usuarios do projeto
+
         // Adiciona um pequeno atraso antes de renderizar a página
         setTimeout(() => {
             res.render('showprojeto', { 
@@ -104,7 +123,8 @@ router.get('/show/:id_usuario/:id_projeto', async (req, res) => {
                 usuarios, 
                 user,
                 usuarioProjetoLider, 
-                usuarioProjetoCliente 
+                usuarioProjetoCliente,
+                ImprimeTodosUsuariosDoProjeto
             });
         }, 500); // 500ms de atraso
 
