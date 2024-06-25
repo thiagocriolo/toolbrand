@@ -158,67 +158,59 @@
 																								Colaborar</button>
 																						</form>
 																					</div>
-																					<% } %>
-																						<% } %>
-																							<% if (liderLogado) { %>
+																				<% } %>
+																			<% } %>
+																							
+																						<% if (liderLogado) { %>
 
-																								<% if
-																									(card.aprovacao===true)
-																									{ %>
+																								<% if (card.aprovacao===true) { %>
 																									<h5
 																										class="aprovar text-warning">
-																										Aprovado!</h5>
-																									<% } else { %>
-																										<div
-																											class="text-center">
-																											<form
-																												class="telaform"
-																												action="/cards/update/<%= id_usuario_logado %>/<%= id_projeto.id %>/<%= card.id %>"
-																												method="POST">
-
-																												<div
-																													class="mb-3">
-																													<div
-																														class="aprovar text-center">
-																														<div
-																															class="">
-																															<h5
-																																class="fw-bold">
-																																Aprovado?
-																															</h5>
-																															<input
-																																name="aprovacao"
-																																class="form-check-input"
-																																type="checkbox"
-																																value="1"
-																																id="aprovacao">
-																															<label
-																																class="form-check-label fw-bold"
-																																for="aprovacao">Sim?</label>
-																															<input
-																																name="aprovacao"
-																																class="form-check-input"
-																																type="checkbox"
-																																value="1"
-																																id="aprovacao">
-																															<label
-																																class="form-check-label fw-bold"
-																																for="aprovacao">Não</label>
-																														</div>
-																														<button
-																															type="submit"
-																															class="btn btn-sm btn-primary">Enviar</button>
+																										Aprovado!
+																									</h5>
+																								<% } else if(card.aprovacao=== 2) { %>
+																									<h5
+																									class="aprovar text-danger">
+																									Reprovado!
+																								</h5>
+																								<% }else{ %>
+																									<div
+																										class="text-center">
+																										<form
+																											class="telaform"
+																											action="/cards/update/<%= id_usuario_logado %>/<%= id_projeto.id %>/<%= card.id %>"
+																											method="POST"
+																										>
+																											<div class="mb-3">
+																												<div class="aprovar text-center">
+																													<h5 class="fw-bold">Aprovado?</h5>
+																													<div class="form-check form-check-inline">
+																														<input 
+																															name="aprovacao"
+																															class="form-check-input"
+																															type="checkbox"
+																															value="1"
+																															id="aprovacao">
+																														<label class="form-check-label fw-bold" for="aprovacao">Sim</label>
 																													</div>
-
+																													<div class="form-check form-check-inline">
+																														<input 
+																															name="aprovacao"
+																															class="form-check-input"
+																															type="checkbox"
+																															value="2"
+																															id="reprovacao">
+																														<label class="form-check-label fw-bold" for="reprovacao">Não</label>
+																													</div>
+																													<button type="submit" class="btn btn-sm btn-primary">Enviar</button>
 																												</div>
+																											</div>
 
+																										</form>
+																									</div>
 
-
-																											</form>
-																										</div>
-
-																										<% } %>
-																											<% } %>
+																									<% } %>
+																									<% } %>
 
 																												<div
 																													class="text-center">
