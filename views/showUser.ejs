@@ -26,14 +26,14 @@
 				</div>
 				<div class="modal-body">
 					<form action="/projetos/add/<%= user.id %>" method="POST">
-						
+
 						<div class="mb-3">
 							<select class="form-select" aria-label="nome do Cliente Responsável" name="cliente">
 								<option disabled selected>Selecione o participante</option>
-									<% usuarios.forEach(function(cliente) { %>
-										<option value="<%= cliente.id %>">
-											<%= cliente.nome %>
-										</option>
+								<% usuarios.forEach(function(cliente) { %>
+									<option value="<%= cliente.id %>">
+										<%= cliente.nome %>
+									</option>
 									<% }); %>
 							</select>
 						</div>
@@ -77,7 +77,7 @@
 
 
 			<div class="dashboard col-11">
-				<div class="boxcontainer container h-75 w-75 position-absolute top-50 start-50 translate-middle ">
+				<div class="boxcontainer container h-75 w-75 ">
 					<div class="text-center projetos projlider">
 						<div class="">
 							<h1 class=""><i class="bi bi-grid-1x2"></i> Projetos liderados <br> </h1>
@@ -145,15 +145,75 @@
 															href="/projetos/show/<%= user.id %>/<%= projetoLider.id %>">
 															<i class="bi bi-eye"></i> </a>
 													</div>
-													<div class="col th-contens segundo"><a class="btn btn-primary"
-															href="/projetos/show/<%= user.id %>/<%= projetoLider.id %>">
+													<div class="col th-contens segundo">
+														<!-- Button trigger modal -->
+														<button type="button" class="btn btn-primary"
+															data-bs-toggle="modal" data-bs-target="#editaProjeto<%= projeto.id %>">
 															<i class="bi bi-columns"></i> Editar Projeto </a>
+														</button>
+
+														<!-- Modal de editar projeto -->
+														<div class="cadastrarprojeto modal fade" id="editaProjeto<%= projeto.id %>" tabindex="-1"
+															aria-labelledby="exampleModalLabel" aria-hidden="true">
+															<div class="modal-dialog">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h1 class="modal-title fs-5" id="exampleModalLabel">Editar Projeto</h1>
+																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																	</div>
+												
+																	<div class="modal-body">
+																		<form action="/projetos/update/<%= id_usuario %>/<%= projeto.id %>" method="POST">
+												
+																			<div class="mb-3">
+																				<p class="fw-bold">Editar projeto</p>
+																				
+																					<div class="mb-3">
+																						<input type="text" value="<%= projeto.nome %>"  placeholder="Nome da Marca" class="form-control" id="nome" name="nome">
+																					</div>
+																					<div class="mb-3">
+																						<input type="date" value="<%= projeto.data_ini %>"  placeholder="Previsão de início" class="form-control" id="data_ini"
+																							name="data_ini">
+																					</div>
+																					<div class="mb-3">
+																						<input type="date" value="<%= projeto.data_fim %>"  placeholder="Previsão de encerramento" class="form-control" id="data_fim"
+																							name="data_fim">
+																					</div>
+																					<div class="mb-3">
+																						<input type="textarea" value="<%= projeto.descricao %>"  placeholder="Descrição do projeto" class="form-control"
+																							id="descricao" name="descricao">
+																					</div>
+																					<div class="mb-3">
+																						<input type="textarea" value="<%= projeto.tipo_projeto %>"  placeholder="Tipo do projeto" class="form-control" id="tipo_projeto"
+																							name="tipo_projeto">
+																					</div>
+																					
+																					<div class="form-check">
+																						<div class="">
+																							<span>Projeto finalizado ?</span>
+																						</div>
+																						<input name="status" class="form-check-input" type="checkbox" value="1"
+																							id="editaProjeto" >
+																						<label class="form-check-label" for="editaProjeto">Sim</label>
+																					</div>
+												
+																					<div class="modal-footer">
+																						<button type="button" class="btn btn-secondary"
+																							data-bs-dismiss="modal">Cancelar</button>
+																						<button type="submit" class="btn btn-primary">Finalizar</button>
+																					</div>
+																											
+																			</div>
+												
+																		</form>
+																	</div>
+												
+												
+																</div>
+															</div>
+														</div>
 													</div>
-
 												</div>
-
-
-
 											</div>
 										</div>
 									</div>
@@ -161,10 +221,10 @@
 								<% }); %>
 						</div>
 					</div>
-					
-					
-					
-					
+
+
+
+
 					<!-- {{!-- ====================== projetos como colaborador ============================= --}} -->
 					<div class="text-center projetos projcolab">
 						<div class="">
@@ -173,7 +233,7 @@
 
 
 						<div class="row h-100 align-items-center " style="display:flex">
-							
+
 							<% colabs.forEach(function(colab) { %>
 								<div class="caixaprojeto col-3 align-self-stretch">
 									<div class="dashbox">
@@ -217,11 +277,11 @@
 
 												<div class="d-flex proj-dash-buttons mt-3">
 													<div class="col th-contens"><a class="btn olho btn-primary"
-														href="/projetos/show/<%= user.id %>/<%= colab.id %>">
+															href="/projetos/show/<%= user.id %>/<%= colab.id %>">
 															<i class="bi bi-eye"></i> </a>
 													</div>
 													<div class="col th-contens segundo"><a class="btn btn-primary"
-														href="/projetos/show/<%= user.id %>/<%= colab.id %>">
+															href="/projetos/show/<%= user.id %>/<%= colab.id %>">
 															<i class="bi bi-columns"></i> Editar Projeto </a>
 													</div>
 
