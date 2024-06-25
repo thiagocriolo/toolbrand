@@ -57,7 +57,7 @@
 											</div>
 											<div class="mt-auto w-100">
 												<div class="progresso">
-													<div class="inside" style="width: <%= porcentagemAprovacao %>%;"><%= porcentagemAprovacao%> %</div>
+													<div style="width: <%= porcentagemAprovacao %>%" class="inside" ><%= porcentagemAprovacao%> %</div>
 												</div>
 											</div>
 										</div>
@@ -299,15 +299,22 @@
 														<% } %>
 															<% }); %>
 
-																<div><a class="align-middle cartaoadd mb-2 rounded-4 d-flex align-items-center"
-																		data-bs-toggle="modal"
-																		data-bs-target="#criaCard<%= etapa.id %>">
-																		Adicionar tarefa
-																		<span
-																			class="bg-light ms-auto rounded-5 d-flex align-items-center justify-content-center">
-																			<i class="bi bi-plus"></i>
-																		</span>
-																	</a></div>
+																<div>
+																	<% if (pode_editar) { %>
+																		<p><a class="align-middle cartaoadd mb-2 rounded-4 d-flex align-items-center"
+																			data-bs-toggle="modal"
+																			data-bs-target="#criaCard<%= etapa.id %>">
+																			Adicionar tarefa
+																			<span
+																				class="bg-light ms-auto rounded-5 d-flex align-items-center justify-content-center">
+																				<i class="bi bi-plus"></i>
+																			</span>
+																		</a></p>
+																	<% } else {} %>
+																	
+																	
+																
+																</div>
 											</div>
 
 
