@@ -99,9 +99,17 @@
 																		<span class="align-middle">
 																			<%= card.nome_card %>
 																		</span>
+																		<% imprimeTodosUsuarios.forEach(function(usuarioImpresso) { %>
+																			<% if (card.id_usuario === usuarioImpresso.id) { %>
+																				<span class="align-middle">
+																					<%= usuarioImpresso.nome %>
+																				</span>
+																			<% } %>
+																		<% }); %>
+																		
 																	</div>
 																	<div class="p-2 bd-highlight  col-2 cardsessao cardtarefa">
-<!-- testando -->
+
 																		<% if (card.aprovacao===true) { %> 
 																			<i class="iconaprovado bi bi-check-circle-fill"></i>
 																		<% } else if (card.aprovacao===2) { %>
