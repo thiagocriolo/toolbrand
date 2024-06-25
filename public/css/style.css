@@ -214,6 +214,11 @@ input[type="radio"]:checked + label img{
 	padding: 10px;
 }
 
+.dashboard {
+	margin-left: auto;
+    width: calc(100% - 100px);
+}
+
 
 
 .projetoescopo .dashbox {
@@ -359,6 +364,13 @@ input[type="radio"]:checked + label img{
 	margin: 0;
 }
 
+.fase h1,
+.fase h2 span,
+.fase h3 span {
+	color: #fff;
+	font-weight: 500;
+}
+
 .fase h5 {
 	font-weight: 400;
 	font-size: 16px;
@@ -438,18 +450,36 @@ input[type="radio"]:checked + label img{
 	text-align: right;
 }
 
-
-.projetofase .fase>.row a{
+/*
+.projetofase .anexos a{
 	background-color: var(--cinza);
     color: #fff;
     text-decoration: none;
     border-radius: 10em;
 	padding: 3px 0px 0px 0px;
 	font-size: 12px;
+} */
+
+.projetofase .anexos a{
+	padding: 6px 0px;
+}
+
+.aguardando .anexos a {
+	background-color: #888;
+}
+
+.aguardando h3 span {
+    color: #888 !important;
+}
+
+.projetofase .fase>.row a h2{
+	color: #333;
 }
 
 .fase>.row .row {
-	padding: 2px 5px 4px 10px;
+	padding: 0px 20px 0px 20px;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .projetoinfo {
@@ -530,7 +560,7 @@ input[type="radio"]:checked + label img{
 }
 
 .anexos a {
-    padding: 5px;
+    padding: 12px 0px;
     border-radius: 5px;
     color: #fff;
     font-weight: 300;
@@ -678,18 +708,19 @@ a.cartaoadd:active span {
 	font-weight: 600;
 }
 
-.comentarios {
+.comentario {
 	background-color: #dfdbff;
     padding: 20px;
     border-radius: 20px;
+	margin-bottom: 10px;
 }
 
-.comentarios>* {
+.comentario >* {
 	display: inline;
     font-size: 16px;
 }
 
-.comentarios h5 {
+.comentario h5 {
 	font-weight: 700;
 }
 

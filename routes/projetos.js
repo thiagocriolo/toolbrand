@@ -50,6 +50,12 @@ router.get('/show/:id_usuario/:id_projeto', async (req, res) => {
     const { id_usuario, id_projeto } = req.params;
 
     try {
+
+        const user = await User.findOne({
+            where: { id: id_usuario, }
+        });   
+        
+
         // Verifica se existe uma entrada na tabela UsuarioDoProjeto
         let usuarioProjetoLider = await UsuarioDoProjeto.findOne({
             where: { id_usuario, id_projeto }
@@ -74,6 +80,8 @@ router.get('/show/:id_usuario/:id_projeto', async (req, res) => {
             }
         });
 
+
+          
    
 
         // Agora busca o projeto com os dados atualizados
@@ -87,7 +95,7 @@ router.get('/show/:id_usuario/:id_projeto', async (req, res) => {
        
         // Adiciona um pequeno atraso antes de renderizar a página
         setTimeout(() => {
-            res.render('showprojeto', { projeto, usuarioProjetoLider, id_usuario, id_projeto, usuarios });
+            res.render('showprojeto', { projeto, usuarioProjetoLider, id_usuario, id_projeto, usuarios, user });
         }, 500); // 500ms de atraso
 
     } catch (error) {

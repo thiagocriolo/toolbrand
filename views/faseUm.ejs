@@ -16,412 +16,350 @@
 	<div class="container-fluid h-100 text-center">
 
 		<div class="row min-vh-100 h-100 align-items-center">
-			<div class="sidebar col-1">
-				<nav class="navbar col mw-2 bg-body-tertiary fixed-top">
-					<div class="container-fluid min-vh-100">
-						<div class="avatarheader mb-auto mt-3">
-							<img src="/images/Avatars/avatars_2.png">
-						</div>
+			<div> <%- include('partials/navbar.ejs') %> </div>
 
-						<button class="navbar-toggler mb-4" type="button" data-bs-toggle="offcanvas"
-							data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
-							aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-
-						<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
-							aria-labelledby="offcanvasNavbarLabel">
-							<button type="button" class="btn-close text-reset ms-auto p-2" data-bs-dismiss="offcanvas"
-								aria-label="Close"></button>
-							<div class="offcanvas-header">
-								<div class="perfilmenu">
-									<div class="avatarmenu mb-auto mt-3">
-										<img src="/images/Avatars/avatars_2.png">
-									</div>
-									<h4 class="offcanvas-title d-none d-sm-block" id="offcanvas">Fulano de tal</h4>
-									<h5 class="d-none d-sm-block" id="offcanvas">Profissão</h5>
-								</div>
-							</div>
-
-							<div class="offcanvas-body">
-								<ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
-									<li class="nav-item">
-										<a href="#" class="nav-link text-truncate">
-											<i class="bi bi-person-circle"></i><span
-												class="ms-1 d-none d-sm-inline">Editar
-												Perfil</span>
-										</a>
-									</li>
-									<li>
-										<a href="/users/show/<%- id_usuario_logado.id %>/<%- id_projeto %>"
-											data-bs-toggle="collapse" class="nav-link text-truncate">
-											<i class="bi bi-columns"></i><span
-												class="ms-1 d-none d-sm-inline">Projetos</span>
-										</a>
-									</li>
-									<li>
-										<a href="#" class="nav-link text-truncate">
-											<i class="bi bi-list-task"></i><span
-												class="ms-1 d-none d-sm-inline">Tarefas</span></a>
-									</li>
-									<li>
-										<a href="#" class="nav-link text-truncate">
-											<i class="bi bi-calendar-heart"></i><span
-												class="ms-1 d-none d-sm-inline">Calendário</span></a>
-									</li>
-									<li>
-										<a href="#" class="nav-link text-truncate">
-											<i class="bi bi-gear"></i><span
-												class="ms-1 d-none d-sm-inline">Configurações</span>
-										</a>
-									</li>
-								</ul>
-
-							</div>
-							<div class="offcanvasfooter align-items-center">
-								<img class="w-50 p-4" src="/images/toolbrand_blue.svg">
-								<p>ToolBrand 2024 © Todos os Direitos Reservados</p>
-							</div>
-						</div>
-					</div>
-				</nav>
-			</div>
-
-			<div class="dashboard h-100 col-11 d-flex align-items-center">
+			<div class="dashboard h-100 d-flex align-items-center">
 				<div class="boxcontainer h-75 mx-auto">
 					<div class="container h-100 text-center">
 						<div class="row ">
 
 
-							<div class="fase faseheader">
-								<div class="row h-100 concluido " id="diagnostico">
+							<div class="fase faseheader ">
+								<div class="row p-4 h-100 concluido " id="diagnostico">
 									<div class="col-lg-1 col-md-2 projetoinfo anexos">
-										<div class="anexo row align-items-center h-25">
-											<a href="#"><i class="bi bi-paperclip"></i><span> 2</span></a>
+										<div class="anexo mb-3 align-items-center ">
+											<a href="#"><i class="bi bi-people-fill"></i><span> 2</span></a>
 										</div>
-										<div class="comentario row align-items-center h-25">
+										<div class="comentarios mb-3 align-items-center ">
 											<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
 										</div>
-										<div class="fases row align-items-center h-25">
+										<div class="fases align-items-center ">
 											<a href="#"><i class="bi bi-check2-square"></i> <span>6</span></a>
 										</div>
-										<div class="equipe projetocolaboradores row align-items-center h-25">
-											<a href="#">
-												<img src="/images/Avatars/avatars_1.png">
-												<img src="/images/Avatars/avatars_2.png">
-												<img src="/images/Avatars/avatars_3.png">
-												<span> + 4</span>
-											</a>
-										</div>
 									</div>
-									<div class="col-lg-9 col-md-8 cabecarioprojeto ">
-										<div class="d-flex h-100 align-items-start flex-column mb-3" ">
-											<div class=" p-2">
-											<h2 class="mb-2">1. Diagnóstico</h2>
-											<h5 class="mb-2">Status: <span>Em andamento </span></h5>
-											<h5 class="mb-2">Lider: <span><%- imprimeLider.nome %></span></h5>
-										</div>
-										<div class="mt-auto w-100 p-2">
-											<div class="progresso">
-												<div class="inside">100%</div>
+									<div class="col-lg-9 col-md-8 cabecarioprojeto  ">
+										<div class="d-flex h-100 align-items-start flex-column mb-3">
+											<div class="lista">
+												<h1 class="mb-2"><%- id_projeto.nome %></h1>
+												<h4 class="mb-2 "><span class="fw-bold"> 1. Diagnóstico: </span> <span>Em andamento </span></h4>
+												<h5 class="mb-2 d-inline me-5"><span class="fw-bold">Gestor do projeto:</span> <span><%- imprimeLider.nome %></span></h5>
+												<h5 class="mb-2 d-inline"><span class="fw-bold">Cliente:</span> <span><%- id_projeto.cliente_responsavel %></span></h5>
+											</div>
+											<div class="mt-auto w-100">
+												<div class="progresso">
+													<div class="inside">100%</div>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-
-
-
-								<div class="d-flex">
-
-									<div class="mt-auto">
-
-									</div>
-								</div>
-
-							</div>
-							<div class="col-lg-2 col-md-2">
-
 							</div>
 						</div>
-					</div>
 
 
-					<div class="etapas">
+						<div class="etapas">
 
-						<div class="row h-100 concluido " id="diagnostico">
+							<div class="row h-100 concluido " id="diagnostico">
 
-							<% etapas.forEach(function(etapa) { %>
-								<div class="col-lg-3 col-md-6 etapadoprojeto">
-									<div class="dashbox d-flex align-items-end flex-column">
-										<div class="etapaheader w-100">
-											<h3>
-												<%= etapa.nome %>
-											</h3>
-											<h5>Status: <span> Andamento </span></h5>
-										</div>
+								<% etapas.forEach(function(etapa) { %>
+									<div class="col-lg-3 col-md-6 etapadoprojeto">
+										<div class="dashbox d-flex align-items-end flex-column">
+											<div class="etapaheader w-100">
+												<h3>
+													<%= etapa.nome %>
+												</h3>
+												<h5>Status: <span> Andamento </span></h5>
+											</div>
 
 
 
-										<div class="tarefario w-100 ">
-											<% cards.forEach(function(card) { %>
-												<% if (card.id_etapa===etapa.id) { %>
-													<div class="cartao rounded-4" data-bs-toggle="modal"
-														data-bs-target="#verCard<%= card.id %>">
-														<div class="row ">
-															<div class="d-flex align-items-center bd-highlight ">
-																<div
-																	class="p-2 bd-highlight col-2 cardsessao cardcolab">
-																	<img src="/images/Avatars/avatars_1.png">
-																</div>
-																<div
-																	class="p-2 bd-highlight col-8 cardsessao cardtitulo">
-																	<span class="align-middle">
-																		<%= card.nome_card %>
-																	</span>
-																</div>
-																<div
-																	class="p-2 bd-highlight col-2 cardsessao cardtarefa">
-																	<i class="bi bi-circle"></i>
+											<div class="tarefario w-100 ">
+												<% cards.forEach(function(card) { %>
+													<% if (card.id_etapa===etapa.id) { %>
+														<div class="cartao rounded-4" data-bs-toggle="modal"
+															data-bs-target="#verCard<%= card.id %>">
+															<div class="row ">
+																<div class="d-flex align-items-center bd-highlight ">
+																	<div
+																		class="p-2 bd-highlight col-2 cardsessao cardcolab">
+																		<img src="/images/Avatars/avatars_1.png">
+																	</div>
+																	<div
+																		class="p-2 bd-highlight col-8 cardsessao cardtitulo">
+																		<span class="align-middle">
+																			<%= card.nome_card %>
+																		</span>
+																	</div>
+																	<div
+																		class="p-2 bd-highlight col-2 cardsessao cardtarefa">
+																		<i class="bi bi-circle"></i>
+																	</div>
 																</div>
 															</div>
 														</div>
-													</div>
 
-													<!-- Modal -->
-													<div class="modal fade modal_Z_index" id="verCard<%= card.id %>"
-														tabindex="-1" aria-labelledby="exampleModalLabel"
-														aria-hidden="true">
-														<div class="modal-dialog">
-															<div class="modal-content">
-																<div class="modal-header">
-																	<h5 class="modal-title" id="exampleModalLabel">
-																		<%= card.nome_card %>
-																			<!-- Tarefa <%= etapa.id %> -->
-																	</h5>
-																	<button type="button" class="btn-close"
-																		data-bs-dismiss="modal"
-																		aria-label="Close"></button>
-																</div>
-																<div class="modal-body tarefaview">
+														<!-- Modal -->
+														<div class="modal fade modal_Z_index" id="verCard<%= card.id %>"
+															tabindex="-1" aria-labelledby="exampleModalLabel"
+															aria-hidden="true">
+															<div class="modal-dialog">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h5 class="modal-title" id="exampleModalLabel">
+																			<%= card.nome_card %>
+																				<!-- Tarefa <%= etapa.id %> -->
+																		</h5>
+																		<button type="button" class="btn-close"
+																			data-bs-dismiss="modal"
+																			aria-label="Close"></button>
+																	</div>
+																	<div class="modal-body tarefaview">
 
 
-																	<p class="solicitacao solidesc">
-																		<span>Sobre a tarefa: </span>
-																		<%= card.solicitacao %>
-																	</p>
-																	<% if (pode_colaborar) { %>
-																		<% if (card.colaboracao) { %>
-																			<p class="solicitacao solifeita mb-5">
-																				<%= card.colaboracao %>
-																			</p>
-																			<% } else { %>
-																				<div class="text-center">
-																					<form class="mb-5"
-																						action="/cards/update/<%= id_usuario_logado %>/<%= id_projeto %>/<%= card.id %>"
-																						method="POST">
-																						<div class="">
-																							<textarea
-																								class="solimais solicitacao"
-																								name="colaboracao"
-																								placeholder="Colabore aqui"
-																								id="colaboracao"></textarea>
-																						</div>
-																						<button type="submit"
-																							class="btn btn-sm btn-primary">
-																							Colaborar</button>
-																					</form>
-																				</div>
-																				<% } %>
+																		<p class="solicitacao solidesc">
+																			<span>Sobre a tarefa: </span>
+																			<%= card.solicitacao %>
+																		</p>
+																		<% if (pode_colaborar) { %>
+																			<% if (card.colaboracao) { %>
+																				<p class="solicitacao solifeita mb-5">
+																					<%= card.colaboracao %>
+																				</p>
+																				<% } else { %>
+																					<div class="text-center">
+																						<form class="mb-5"
+																							action="/cards/update/<%= id_usuario_logado %>/<%= id_projeto %>/<%= card.id %>"
+																							method="POST">
+																							<div class="">
+																								<textarea
+																									class="solimais solicitacao"
+																									name="colaboracao"
+																									placeholder="Colabore aqui"
+																									id="colaboracao"></textarea>
+																							</div>
+																							<button type="submit"
+																								class="btn btn-sm btn-primary">
+																								Colaborar</button>
+																						</form>
+																					</div>
 																					<% } %>
-																						<% if (liderLogado) { %>
-																							<% if
-																								(card.aprovacao===true)
-																								{ %>
-																								<h5
-																									class="text-warning">
-																									Aprovado
-																								</h5>
-																								<% } else { %>
-																									<div
-																										class="text-center mb-5">
-																										<form
-																											class="justify-content-between d-flex"
-																											action="/cards/update/<%= id_usuario_logado %>/<%= id_projeto %>/<%= card.id %>"
-																											method="POST">
-																											<span
-																												class="form-check">
-																												<input
-																													class="form-check-input"
-																													type="checkbox"
-																													value="1">
-																												<label
-																													class="fw-bold form-check-label">
-																													Aprovado?
-																												</label>
-																											</span>
+																						<% } %>
+																							<% if (liderLogado) { %>
+																								<% if
+																									(card.aprovacao===true)
+																									{ %>
+																									<h5
+																										class="text-warning">
+																										Aprovado
+																									</h5>
+																									<% } else { %>
+																										<div
+																											class="text-center mb-5">
+																											<form
+																												class="justify-content-between d-flex"
+																												action="/cards/update/<%= id_usuario_logado %>/<%= id_projeto %>/<%= card.id %>"
+																												method="POST">
+																												<span
+																													class="form-check">
+																													<input
+																														class="form-check-input"
+																														type="checkbox"
+																														value="1">
+																													<label
+																														class="fw-bold form-check-label">
+																														Aprovado?
+																													</label>
+																												</span>
 
 
-																											<button
-																												type="submit"
-																												class="btn btn-sm btn-primary">Aprovar
-																											</button>
-																										</form>
-																									</div>
+																												<button
+																													type="submit"
+																													class="btn btn-sm btn-primary">Aprovar
+																												</button>
+																											</form>
+																										</div>
 
-																									<div
-																										class="form-check form-switch mb-3">
-																										<label
-																											class="form-check-label"
-																											for="aprovacao">Aguardando
-																											aprovação</label>
-																										<input value="1"
-																											name="aprovacao"
-																											class="form-check-input"
-																											type="checkbox"
-																											role="switch"
-																											id="aprovacao">
-																									</div>
+																										<div
+																											class="form-check form-switch mb-3">
+																											<label
+																												class="form-check-label"
+																												for="aprovacao">Aguardando
+																												aprovação</label>
+																											<input
+																												value="1"
+																												name="aprovacao"
+																												class="form-check-input"
+																												type="checkbox"
+																												role="switch"
+																												id="aprovacao">
+																										</div>
 
 
-																									<% } %>
 																										<% } %>
+																											<% } %>
 
-																											<div
-																												class="text-center">
-																												<form
-																													class="mb-5"
-																													action="/comentarios/add/<%= id_usuario_logado %>/<%= id_projeto %>/<%= card.id %>"
-																													method="POST">
-																													<div>
-																														<textarea
-																															class="solicitacao solimais"
-																															placeholder="Deixe um comentário"
-																															name="comentario"
-																															id="comentario"></textarea>
-																													</div>
-																													<button
-																														type="submit"
-																														class="btn btn-sm btn-primary">Comentar</button>
-																												</form>
-																											</div>
-
-																											<div
-																												class="comentários text-start">
-																												
-																												<h5 class="fw-bold mb-3"> <i class="bi bi-chat-dots"></i> Comentarios </h5>
-
-
-																												<% todosComentariosDoProjeto.forEach(function(comentario){ %>
-																													<% if (comentario.id_card===card.id) { %>
-																														<div class="comentarios">
-																														<% imprimeTodosUsuarios.forEach(function(usuarioImpresso) { %>
-																															<% if (usuarioImpresso.id===comentario.id_usuario) { %>
-																																<h5> <%= usuarioImpresso.nome %> :</h5>
-																															<% } %>
-																														<% }); 	%>
-																																<p> <%= comentario.comentario %> </p>
-
+																												<div
+																													class="text-center">
+																													<form
+																														class="mb-5"
+																														action="/comentarios/add/<%= id_usuario_logado %>/<%= id_projeto %>/<%= card.id %>"
+																														method="POST">
+																														<div>
+																															<textarea
+																																class="solicitacao solimais"
+																																placeholder="Deixe um comentário"
+																																name="comentario"
+																																id="comentario"></textarea>
 																														</div>
-																													<% } %>
-																												<% }); %>
-																											</div>
-																</div>
-																<div class="modal-footer text-center">
+																														<button
+																															type="submit"
+																															class="btn btn-sm btn-primary">Comentar</button>
+																													</form>
+																												</div>
 
-																	<button type="submit" class="btn salvarcard btn-primary"> Salvar <i class="bi bi-check"></i></button>
-																</div>
+																												<div
+																													class="text-start">
 
+																													<h5
+																														class="fw-bold mb-3">
+																														<i
+																															class="bi bi-chat-dots"></i>
+																														Comentarios
+																													</h5>
+
+
+																													<% todosComentariosDoProjeto.forEach(function(comentario){
+																														%>
+																														<% if
+																															(comentario.id_card===card.id)
+																															{
+																															%>
+																															<div
+																																class="comentario">
+																																<% imprimeTodosUsuarios.forEach(function(usuarioImpresso)
+																																	{
+																																	%>
+																																	<% if
+																																		(usuarioImpresso.id===comentario.id_usuario)
+																																		{
+																																		%>
+																																		<h5>
+																																			<%= usuarioImpresso.nome
+																																				%>
+																																				:
+																																		</h5>
+																																		<% }
+																																			%>
+																																			<% });
+																																				%>
+																																				<p>
+																																					<%= comentario.comentario
+																																						%>
+																																				</p>
+
+																															</div>
+																															<% }
+																																%>
+																																<% });
+																																	%>
+																												</div>
+																	</div>
+																	<div class="modal-footer text-center">
+
+																		<button type="submit"
+																			class="btn salvarcard btn-primary"> Salvar
+																			<i class="bi bi-check"></i></button>
+																	</div>
+
+																</div>
 															</div>
 														</div>
-													</div>
-													<% } }); %>
+														<% } }); %>
 
-														<div><a class="align-middle cartaoadd mb-2 rounded-4 d-flex align-items-center"
-																data-bs-toggle="modal"
-																data-bs-target="#criaCard<%= etapa.id %>">
-																Adicionar tarefa
-																<span
-																	class="bg-light ms-auto rounded-5 d-flex align-items-center justify-content-center">
-																	<i class="bi bi-plus"></i>
-																</span>
-															</a></div>
-										</div>
-
-
-
-										<div class="anexos mt-auto mb-3 d-flex w-100">
-											<div class="col-4">
-												<a href="#"><i class="bi bi-paperclip"></i><span>
-														4</span></a>
-											</div>
-											<div class="col-4">
-												<a href="#"><i class="bi bi-chat-dots"></i><span>
-														4</span></a>
-											</div>
-											<div class="col-4">
-												<a href="#"><i class="bi bi-check2-square"></i>
-													<span>4</span></a>
+															<div><a class="align-middle cartaoadd mb-2 rounded-4 d-flex align-items-center"
+																	data-bs-toggle="modal"
+																	data-bs-target="#criaCard<%= etapa.id %>">
+																	Adicionar tarefa
+																	<span
+																		class="bg-light ms-auto rounded-5 d-flex align-items-center justify-content-center">
+																		<i class="bi bi-plus"></i>
+																	</span>
+																</a></div>
 											</div>
 
-										</div>
 
 
+											<div class="anexos mt-auto mb-3 d-flex w-100">
 
-
-									</div>
-								</div>
-								<!-- Modal -->
-								<div class="modal fade modal_Z_index" id="criaCard<%= etapa.id %>" tabindex="-1"
-									aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog modal-dialog-centered">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Adicionar nova tarefa
-													<!-- <%= etapa.id %> -->
-												</h5>
-												<button type="button" class="btn-close" data-bs-dismiss="modal"
-													aria-label="Close"></button>
-											</div>
-											<form class="p-3"
-												action="/cards/add/<%= id_usuario_logado %>/<%= id_projeto %>"
-												method="POST">
-												<div class="modal-body">
-													<!-- Nome do card -->
-													<div data-mdb-input-init class="mb-3">
-														<input placeholder="Título da tarefa" type="text"
-															class="textoform form-control " id="nome_card"
-															name="nome_card" />
-													</div>
-
-													<input type="hidden" class="d-none" id="id_etapa" name="id_etapa"
-														value="<%= etapa.id %>" />
-
-													<!-- Solicitação -->
-													<div data-mdb-input-init class="mb-3">
-														<textarea class="textoform form-control"
-															placeholder="Descreva sua solicitação" id="solicitacao"
-															name="solicitacao"></textarea>
-													</div>
-
+												<div class="col-5">
+													<a href="#"><i class="bi bi-chat-dots"></i><span>
+															4</span></a>
 												</div>
-												<div class="modal-footer">
-
-													<button type="submit" class="btn btn-primary addicon">Adicionar
-														tarefa
-														<span
-															class="bg-light ms-auto rounded-5 align-items-center justify-content-center">
-															<i class="bi bi-plus"></i>
-													</button>
+												<div class="col-2 "></div>
+												<div class="col-5 ">
+													<a href="#"><i class="bi bi-check2-square"></i>
+														<span>4</span></a>
 												</div>
-											</form>
+
+											</div>
+
+
+
+
 										</div>
 									</div>
-								</div>
+									<!-- Modal -->
+									<div class="modal fade modal_Z_index" id="criaCard<%= etapa.id %>" tabindex="-1"
+										aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel">Adicionar nova tarefa
+														<!-- <%= etapa.id %> -->
+													</h5>
+													<button type="button" class="btn-close" data-bs-dismiss="modal"
+														aria-label="Close"></button>
+												</div>
+												<form class="p-3"
+													action="/cards/add/<%= id_usuario_logado %>/<%= id_projeto %>"
+													method="POST">
+													<div class="modal-body">
+														<!-- Nome do card -->
+														<div data-mdb-input-init class="mb-3">
+															<input placeholder="Título da tarefa" type="text"
+																class="textoform form-control " id="nome_card"
+																name="nome_card" />
+														</div>
 
-								<% }); %>
+														<input type="hidden" class="d-none" id="id_etapa"
+															name="id_etapa" value="<%= etapa.id %>" />
 
-									<!-- Exemplos de variaveis e tags que vc pode usar e como usar -->
-									<!-- <% if (pode_colaborar) { %>
+														<!-- Solicitação -->
+														<div data-mdb-input-init class="mb-3">
+															<textarea class="textoform form-control"
+																placeholder="Descreva sua solicitação" id="solicitacao"
+																name="solicitacao"></textarea>
+														</div>
+
+													</div>
+													<div class="modal-footer">
+
+														<button type="submit" class="btn btn-primary addicon">Adicionar
+															tarefa
+															<span
+																class="bg-light ms-auto rounded-5 align-items-center justify-content-center">
+																<i class="bi bi-plus"></i>
+														</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+
+									<% }); %>
+
+										<!-- Exemplos de variaveis e tags que vc pode usar e como usar -->
+										<!-- <% if (pode_colaborar) { %>
 											<p>ID de Pode Colaborar: <%= pode_colaborar %></p>
 										<% } else { %>
 											<p>Usuário não tem permissão para colaborar.</p>
@@ -445,17 +383,13 @@
 									-->
 
 
-						</div>
+							</div>
 
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	</div>
-	</div>
-	</div>
-
 
 	<!-- jQuery (opcional) -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"

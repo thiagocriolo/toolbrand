@@ -118,7 +118,7 @@
 
 		<div class="row min-vh-100 h-100 align-items-center">
 
-			<div> <%- include('partials/navbar.ejs') %> </div>
+			 <%- include('partials/navbar.ejs') %>
 
 
 			<div class="dashboard h-100 col-11 d-xl-flex align-items-center">
@@ -178,165 +178,135 @@
 								<div class="box h-100">
 
 
-									<div class="fase h-25">
-										<div class="row h-100 concluido " id="diagnostico">
-											<div class="col-lg-1 col-md-2 projetoinfo">
-												<div class="anexos row align-items-center h-25">
-													<a href="#"><i class="bi bi-paperclip"></i><span> 4</span></a>
-												</div>
-												<div class="comentario row align-items-center h-25">
-													<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
-												</div>
-												<div class="fases row align-items-center h-25">
-													<a href="#"><i class="bi bi-check2-square"></i> <span>4</span></a>
-												</div>
-												<div class="equipe projetocolaboradores row align-items-center h-25">
-													<a href="#">
-														<img src="/images/Avatars/avatars_1.png">
-														<img src="/images/Avatars/avatars_2.png">
-														<img src="/images/Avatars/avatars_3.png">
-														<span> + 4</span>
-													</a>
-												</div>
-											</div>
-											<div class="col-lg-9 col-md-8 cabecarioprojeto ">
-
-												<div class="d-flex h-100 align-items-start flex-column mb-3"
-													style="height: 200px;">
-
-													<div class="p-2"><a
-															href="/fases/faseUm/<%- id_usuario %>/<%- id_projeto %>">
-															<h2>1. Diagnóstico</h2>
-														</a>
-														<h5>Status: <span>Em andamento </span></h5>
+									
+										<div class="fase  ">
+											<div class="row p-4 h-100 concluido " id="diagnostico">
+												<div class="col-lg-1 col-md-2 projetoinfo anexos">
+													<div class="anexo mb-2 align-items-center ">
+														<a href="#"><i class="bi bi-people-fill"></i><span> 2</span></a>
 													</div>
-													<div class="mt-auto w-100 p-2">
-														<div class="progresso">
-															<div class="inside">100</div>
+													<div class="comentarios mb-2 align-items-center ">
+														<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
+													</div>
+													<div class="fases align-items-center ">
+														<a href="#"><i class="bi bi-check2-square"></i>
+															<span>6</span></a>
+													</div>
+												</div>
+												<div class="col-lg-9 col-md-8 cabecarioprojeto  ">
+													<div class="d-flex h-100 align-items-start flex-column mb-3">
+														<div class="lista">
+															<a href="/fases/faseUm/<%- id_usuario %>/<%- id_projeto %>">
+																<h2>1. Diagnóstico  </h2>
+																<h3><span>Concluído </span></h3>
+															</a>
+														</div>
+														<div class="mt-auto w-100">
+															<div class="progresso">
+																<div class="inside">100%</div>
+															</div>
 														</div>
 													</div>
 												</div>
-
-
-
-												<div class="d-flex">
-
-													<div class="mt-auto">
-
+											</div>
+										</div>
+									
+										<div class="fase  ">
+											<div class="row p-4 h-100 andamento " id="estrategia">
+												<div class="col-lg-1 col-md-2 projetoinfo anexos">
+													<div class="anexo mb-2 align-items-center ">
+														<a href="#"><i class="bi bi-people-fill"></i><span> 2</span></a>
+													</div>
+													<div class="comentarios mb-2 align-items-center ">
+														<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
+													</div>
+													<div class="fases align-items-center ">
+														<a href="#"><i class="bi bi-check2-square"></i>
+															<span>6</span></a>
 													</div>
 												</div>
-
-											</div>
-											<div class="col-lg-2 col-md-2">
-
-											</div>
-										</div>
-									</div>
-
-
-									<div class="fase h-25">
-										<div class="row h-100 andamento" id="estrategia">
-											<div class="col-1 projetoinfo">
-												<div class="anexos row h-25">
-													<a href="#"><i class="bi bi-paperclip"></i><span> 4</span></a>
-												</div>
-												<div class="comentario row h-25">
-													<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
-												</div>
-												<div class="fases row h-25">
-													<a href="#"><i class="bi bi-check2-square"></i> <span>4</span></a>
-												</div>
-												<div class="equipe projetocolaboradores row h-25">
-													<a href="#">
-														<img src="/images/Avatars/avatars_1.png">
-														<img src="/images/Avatars/avatars_2.png">
-														<img src="/images/Avatars/avatars_3.png">
-														<span> + 4</span>
-													</a>
-												</div>
-											</div>
-											<div class="col-9 cabecarioprojeto">
-												<a href="/fases/faseDois/<%- id_usuario %>/<%- id_projeto %>">
-													<h2>2. Estratégia</h2>
-													<h5>Status: <span>Em andamento </span></h5>
-													<div class="progresso">
-														<div class="inside">100</div>
+												<div class="col-lg-9 col-md-8 cabecarioprojeto  ">
+													<div class="d-flex h-100 align-items-start flex-column mb-3">
+														<div class="lista">
+															<a href="/fases/faseUm/<%- id_usuario %>/<%- id_projeto %>">
+																<h2>2. Estratégia  </h2>
+																<h3><span>Em andamento </span></h3>
+															</a>
+														</div>
+														<div class="mt-auto w-100">
+															<div class="progresso">
+																<div class="inside">100%</div>
+															</div>
+														</div>
 													</div>
-												</a>
-											</div>
-											<div class="col-2">
-
+												</div>
 											</div>
 										</div>
-									</div>
-
-									<div class="fase h-25">
-										<div class="row h-100 " id="criacao">
-											<div class="col-1 projetoinfo">
-												<div class="anexos row h-25">
-													<a href="#"><i class="bi bi-paperclip"></i><span> 4</span></a>
+									
+										<div class="fase  ">
+											<div class="row p-4 h-100 aguardando" id="criacao">
+												<div class="col-lg-1 col-md-2 projetoinfo anexos">
+													<div class="anexo mb-2 align-items-center ">
+														<a href="#"><i class="bi bi-people-fill"></i><span> 2</span></a>
+													</div>
+													<div class="comentarios mb-2 align-items-center ">
+														<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
+													</div>
+													<div class="fases align-items-center ">
+														<a href="#"><i class="bi bi-check2-square"></i>
+															<span>6</span></a>
+													</div>
 												</div>
-												<div class="comentario row h-25">
-													<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
+												<div class="col-lg-9 col-md-8 cabecarioprojeto  ">
+													<div class="d-flex h-100 align-items-start flex-column mb-3">
+														<div class="lista">
+															<a href="/fases/faseUm/<%- id_usuario %>/<%- id_projeto %>">
+																<h2>3. Criação </h2>
+																<h3><span>Aguardando </span></h3>
+															</a>
+														</div>
+														<div class="mt-auto w-100">
+															<div class="progresso">
+																<div class="inside">100%</div>
+															</div>
+														</div>
+													</div>
 												</div>
-												<div class="fases row h-25">
-													<a href="#"><i class="bi bi-check2-square"></i> <span>4</span></a>
-												</div>
-												<div class="equipe projetocolaboradores row h-25">
-													<a href="#">
-														<img src="/images/Avatars/avatars_1.png">
-														<img src="/images/Avatars/avatars_2.png">
-														<img src="/images/Avatars/avatars_3.png">
-														<span> + 4</span>
-													</a>
-												</div>
-											</div>
-											<div class="col-9 cabecarioprojeto">
-												<h2>3. Criação</h2>
-												<h5>Status: <span>Em andamento </span></h5>
-												<div class="progresso">
-													<div class="inside">100</div>
-												</div>
-											</div>
-											<div class="col-2">
-
 											</div>
 										</div>
-									</div>
-
-									<div class="fase h-25">
-										<div class="row h-100 " id="desdobramentos">
-											<div class="col-1 projetoinfo">
-												<div class="anexos row h-25">
-													<a href="#"><i class="bi bi-paperclip"></i><span> 4</span></a>
+									
+										<div class="fase  ">
+											<div class="row p-4 h-100 aguardando" id="desdobramentos">
+												<div class="col-lg-1 col-md-2 projetoinfo anexos">
+													<div class="anexo mb-2 align-items-center ">
+														<a href="#"><i class="bi bi-people-fill"></i><span> 2</span></a>
+													</div>
+													<div class="comentarios mb-2 align-items-center ">
+														<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
+													</div>
+													<div class="fases align-items-center ">
+														<a href="#"><i class="bi bi-check2-square"></i>
+															<span>6</span></a>
+													</div>
 												</div>
-												<div class="comentario row h-25">
-													<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
+												<div class="col-lg-9 col-md-8 cabecarioprojeto  ">
+													<div class="d-flex h-100 align-items-start flex-column mb-3">
+														<div class="lista">
+															<a href="/fases/faseUm/<%- id_usuario %>/<%- id_projeto %>">
+																<h2>4. Desdobramentos </h2>
+																<h3><span>Aguardando </span></h3>
+															</a>
+														</div>
+														<div class="mt-auto w-100">
+															<div class="progresso">
+																<div class="inside">100%</div>
+															</div>
+														</div>
+													</div>
 												</div>
-												<div class="fases row h-25">
-													<a href="#"><i class="bi bi-check2-square"></i> <span>4</span></a>
-												</div>
-												<div class="equipe projetocolaboradores row h-25">
-													<a href="#">
-														<img src="/images/Avatars/avatars_1.png">
-														<img src="/images/Avatars/avatars_2.png">
-														<img src="/images/Avatars/avatars_3.png">
-														<span> + 4</span>
-													</a>
-												</div>
-											</div>
-											<div class="col-9 cabecarioprojeto">
-												<h2>4. Desdobramentos</h2>
-												<h5>Status: <span>Em andamento </span></h5>
-												<div class="progresso">
-													<div class="inside">100</div>
-												</div>
-											</div>
-											<div class="col-2">
-
 											</div>
 										</div>
-									</div>
+									
 
 
 								</div>
