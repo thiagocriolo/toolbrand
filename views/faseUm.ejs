@@ -314,13 +314,31 @@
 											<div class="anexos mt-auto mb-3 d-flex w-100">
 
 												<div class="col-5">
-													<a href="#"><i class="bi bi-chat-dots"></i><span>
-														<%= contTarefa1 %> </span></a>
+													<a href="#"><i class="bi bi-chat-dots"></i>
+														<span>
+															<% let contadorComentarios = 0; %>
+															<% todosComentariosDoProjeto.forEach(comentario => { %>
+																<% if (comentario.id_etapa === etapa.id) { %>
+																	<% contadorComentarios++; %>
+																<% } %>
+															<% }); %>
+															<%= contadorComentarios %>
+														</span>
+													</a>
 												</div>
 												<div class="col-2 "></div>
 												<div class="col-5 ">
 													<a href="#"><i class="bi bi-check2-square"></i>
-														<span><%= fasesCard %> </span></a>
+														<span>
+															<% let contadorCards = 0; %>
+															<% cards.forEach(card => { %>
+																<% if (card.id_etapa === etapa.id) { %>
+																	<% contadorCards++; %>
+																<% } %>
+															<% }); %>
+															<%= contadorCards %>
+														</span>
+													</a>
 												</div>
 
 											</div>
