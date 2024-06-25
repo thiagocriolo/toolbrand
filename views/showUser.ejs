@@ -26,10 +26,18 @@
 				</div>
 				<div class="modal-body">
 					<form action="/projetos/add/<%= user.id %>" method="POST">
+						
 						<div class="mb-3">
-							<input type="text" placeholder="nome do Cliente Responsável" class="form-control"
-								id="cliente_responsavel" name="cliente_responsavel">
+							<select class="form-select" aria-label="nome do Cliente Responsável" name="cliente">
+								<option disabled selected>Selecione o participante</option>
+									<% usuarios.forEach(function(cliente) { %>
+										<option value="<%= cliente.id %>">
+											<%= cliente.nome %>
+										</option>
+									<% }); %>
+							</select>
 						</div>
+
 						<div class="mb-3">
 							<input type="text" placeholder="Nome da Marca" class="form-control" id="nome" name="nome">
 						</div>

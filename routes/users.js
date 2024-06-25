@@ -54,9 +54,19 @@ router.get('/show/:id', async (req, res) => {
             }
         });
 
+        // Buscar os projetos onde o usuário é colaborador
+        const usuarios = await User.findAll({
+            where: {
+                id: {
+                    [Op.not]: user.id // Busca todos os usuários cujo ID não é igual ao id_usuario
+                }
+            }
+        });
+
         // Renderizar a view com os dados do usuário, projetos como líder e projetos como colaborador
         res.render('showUser', {
             user,
+            usuarios,
             projetosLider,
             colabs
         });

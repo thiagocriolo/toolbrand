@@ -14,13 +14,22 @@ router.get('/list', (req, res) => {
 
 // Add um novo projeto através da form
 router.post('/add/:id', (req, res) => {
-    let { nome, cliente_responsavel, data_ini, data_fim, status, descricao, tipo_projeto } = req.body;
+    let { nome, cliente, data_ini, data_fim, status, descricao, tipo_projeto } = req.body;
     let id_usuario = req.params.id;
+
+    const resgataCliente = User.findOne({
+        where: { id: cliente, }
+    });   
+
+    if (resgataCliente) {
+        return res.status(404).send('Projeto'+resgataCliente.nome);
+    }
+
 
     // insert
     Projeto.create({
         nome,
-        cliente_responsavel,
+        cliente_responsavel: resgataCliente.nome,
         data_ini,
         data_fim,
         status,
@@ -46,6 +55,7 @@ router.post('/update/:id_usuario_logado/:id_projeto', (req, res) => {
     .catch(err => console.log(err));
 });
 
+
 router.get('/show/:id_usuario/:id_projeto', async (req, res) => {
     const { id_usuario, id_projeto } = req.params;
 
@@ -54,7 +64,6 @@ router.get('/show/:id_usuario/:id_projeto', async (req, res) => {
         const user = await User.findOne({
             where: { id: id_usuario, }
         });   
-        
 
         // Verifica se existe uma entrada na tabela UsuarioDoProjeto
         let usuarioProjetoLider = await UsuarioDoProjeto.findOne({
@@ -78,11 +87,7 @@ router.get('/show/:id_usuario/:id_projeto', async (req, res) => {
                     [Op.not]: id_usuario // Busca todos os usuários cujo ID não é igual ao id_usuario
                 }
             }
-        });
-
-
-          
-   
+        });          
 
         // Agora busca o projeto com os dados atualizados
         const projeto = await Projeto.findOne({
@@ -91,6 +96,30 @@ router.get('/show/:id_usuario/:id_projeto', async (req, res) => {
 
         if (!projeto) {
             return res.status(404).send('Projeto não encontrado');
+        }
+        
+        
+        let resgataCliente = await User.findOne({ where: { nome: projeto.cliente_responsavel } });
+        if (!resgataCliente) {
+            console.error(`Usuário com nome ${projeto.cliente_responsavel} não encontrado`);
+            return res.status(404).send('Cliente responsável não encontrado');
+        }
+
+        let usuarioProjetoCliente = await UsuarioDoProjeto.findOne({
+            where: {
+                id_usuario: resgataCliente.id,
+                id_projeto
+            }
+        });
+        if (!usuarioProjetoCliente) {
+            usuarioProjetoCliente = await UsuarioDoProjeto.create({
+                id_usuario: resgataCliente.id,
+                id_projeto,
+                tipo_usuario: 3, // O cliente responsável do projeto
+                pode_colaborar: 0, // Editável conforme necessário
+                pode_editar: 0
+            });
+            console.log('Entrada na tabela UsuarioDoProjeto criada para o cliente responsável');
         }
        
         // Adiciona um pequeno atraso antes de renderizar a página
