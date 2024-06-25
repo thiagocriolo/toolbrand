@@ -267,11 +267,20 @@ input[type="radio"]:checked + label img{
     border: none;
     color: #ffffff;
 	height: 2em;
-    width: 2em;
-    padding: 7px 0px 0px 0px !important;
+    
     font-size: 1.2em;
     text-align: center;
     cursor: pointer;
+}
+
+.proj-dash-buttons .olho h5{
+    font-size: .9em;
+	display: inline-flex;
+}
+
+.proj-dash-buttons .olho i{
+    font-size: .9em;
+	padding: 7px 0px 0px 0px !important;
 }
 
 .proj-dash-buttons .segundo a{
