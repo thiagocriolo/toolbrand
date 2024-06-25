@@ -80,7 +80,7 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
         const buscaLider = await UsuarioDoProjeto.findOne({
             where: {
                 id_projeto: id_projeto,
-                tipo_usuario: { [Op.ne]: 1 }
+                tipo_usuario: 1
             }
         });
         const imprimeLider = await User.findOne({
