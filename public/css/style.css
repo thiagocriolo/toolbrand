@@ -377,8 +377,26 @@ input[type="radio"]:checked + label img{
 	margin: 0;
 }
 
+.iconaprovado {
+	color: var(--verde);
+}
 
+.listacolab li{
+	list-style: none;
+    text-align: left;
+    padding: 5px 0px;
+    border-bottom: 2px solid #ddd;
+}
 
+.listacolab .btn.close {
+	color: red;
+}
+
+.aprovar {
+	padding: 20px;
+    border: 2px solid var(--amarelo);
+    border-radius: 30px;
+}
 
 .caixaprojeto>.dashbox h5  {
 	font-size: 15px;

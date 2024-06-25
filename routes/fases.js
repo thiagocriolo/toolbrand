@@ -25,8 +25,6 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
             }
         });
 
-
-
         // 
         const projeto = await Projeto.findOne({
             where: {
@@ -91,8 +89,6 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
             }
         });
 
-
-
         // Mandando para a view todos os usuarios do projeto
         const todosUsuariosDoProjeto = await UsuarioDoProjeto.findAll({
             where: {
@@ -100,30 +96,66 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
             }
         });// Mandando para a view todos os usuarios do projeto
 
-
-
-
+        // Seleciona todos os comentarios do projeto
         const todosComentariosDoProjeto = await Comentario.findAll({
             where: {
                 id_projeto: id_projeto,
             }
         });
-        // for(const comentario of todosComentariosDoProjeto){
-        //     console.log(`
-        //         +--------------------------------------------+
-        //         |               Dados da Requisição          |
-        //         +--------------------------------------------+
 
-        //         Comentarios:
-        //         ID: ${comentario.comentario}
+        // Conta todos os colaboradores da fase 
+        const quantidadeDeColaboradores = await UsuarioDoProjeto.count({
+            where: {
+                id_projeto: id_projeto,
+            }
+        });
 
-        //         +--------------------------------------------+
-        //         |                                            |
-        //         +--------------------------------------------+
-        //        `);
-        // }
+        // Conta todos os comentários da fase        
+        const quantidadeDeComentarios = await Comentario.count({
+            where: {
+                id_projeto: id_projeto,
+            }
+        });      
+        
+        // Conta todos os cards da fase
+        const quantidadeDeCards = await Card.count({
+            where: {
+                id_projeto: id_projeto,
+            }
+        });
+
+        // Conta todos os cards APROVADOS da fase
+        const quantidadeDeCardsAprovados = await Card.count({
+            where: {
+                id_projeto: id_projeto,
+                aprovacao: 1,
+            }
+        });
+
+        const porcentagemAprovacao = (quantidadeDeCardsAprovados / quantidadeDeCards) * 100;
 
 
+
+        // Conta todos os cards da fase
+        const comentariosCard = await Card.count({
+            where: {
+                id: 1,
+            }
+        });
+
+        // Conta todos os cards da ETAPA 01
+        const fasesCard = await Card.count({
+            where: {
+                id_etapa: 1,
+            }
+        });
+
+        const contTarefa1 = await Card.count({
+            where: {
+                id_projeto: id_projeto,
+                id_etapa: 3,
+            }
+        });
 
 
         // Adicionando a uma variavel todos os usuarios, para usar o id como parametro no imprime todos
@@ -149,8 +181,15 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
             liderLogado,
             cards,
             todosComentariosDoProjeto,
-            user
-            
+            user,
+            quantidadeDeComentarios,
+            quantidadeDeColaboradores,
+            quantidadeDeCards,
+            comentariosCard,
+            contTarefa1,
+            quantidadeDeCardsAprovados,
+            porcentagemAprovacao,
+            fasesCard            
         });
 
 
@@ -159,6 +198,21 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
         res.status(500).send('Erro ao buscar etapas ou projeto');
     }
 });
+
+// for(const comentario of todosComentariosDoProjeto){
+        //     console.log(`
+        //         +--------------------------------------------+
+        //         |               Dados da Requisição          |
+        //         +--------------------------------------------+
+
+        //         Comentarios:
+        //         ID: ${comentario.comentario}
+
+        //         +--------------------------------------------+
+        //         |                                            |
+        //         +--------------------------------------------+
+        //        `);
+        // }
 
 // Definindo a rota para '/faseDois'
 router.get('/faseDois/:id_usuario_logado/:id_projeto', async (req, res) => {

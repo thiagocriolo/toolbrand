@@ -19,7 +19,7 @@
 			<div> <%- include('partials/navbar.ejs') %> </div>
 
 			<div class="dashboard h-100 d-flex align-items-center">
-				<div class="boxcontainer h-75 mx-auto">
+				<div class="boxcontainer  mx-auto">
 					<div class="container h-100 text-center">
 						<div class="row ">
 
@@ -28,26 +28,36 @@
 								<div class="row p-4 h-100 concluido " id="diagnostico">
 									<div class="col-lg-1 col-md-2 projetoinfo anexos">
 										<div class="anexo mb-3 align-items-center ">
-											<a href="#"><i class="bi bi-people-fill"></i><span> 2</span></a>
+											<a href="#"><i class="bi bi-people-fill"></i><span> <%-
+														quantidadeDeColaboradores %> </span></a>
 										</div>
 										<div class="comentarios mb-3 align-items-center ">
-											<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
+											<a href="#"><i class="bi bi-chat-dots"></i><span> <%-
+														quantidadeDeComentarios %></span></a>
 										</div>
 										<div class="fases align-items-center ">
-											<a href="#"><i class="bi bi-check2-square"></i> <span>6</span></a>
+											<a href="#"><i class="bi bi-check2-square"></i>
+												<span><%- quantidadeDeCardsAprovados%>/<%- quantidadeDeCards%></span></a>
 										</div>
 									</div>
 									<div class="col-lg-9 col-md-8 cabecarioprojeto  ">
 										<div class="d-flex h-100 align-items-start flex-column mb-3">
 											<div class="lista">
-												<h1 class="mb-2"><%- id_projeto.nome %></h1>
-												<h4 class="mb-2 "><span class="fw-bold"> 1. Diagnóstico: </span> <span>Em andamento </span></h4>
-												<h5 class="mb-2 d-inline me-5"><span class="fw-bold">Gestor do projeto:</span> <span><%- imprimeLider.nome %></span></h5>
-												<h5 class="mb-2 d-inline"><span class="fw-bold">Cliente:</span> <span><%- id_projeto.cliente_responsavel %></span></h5>
+											 <a href="/projetos/show/<%- id_usuario_logado %>/<%- id_projeto.id %>">
+												<h1 class="mb-2"><i class="bi bi-columns"></i> <%- id_projeto.nome %></h1>
+											</a>
+												<h4 class="mb-2 "><span class="fw-bold"> 1. Diagnóstico: </span>
+													<span>Em andamento </span>
+												</h4>
+												<h5 class="mb-2 d-inline me-5"><span class="fw-bold">Gestor do
+														projeto:</span> <span><%- imprimeLider.nome %></span></h5>
+												<h5 class="mb-2 d-inline"><span class="fw-bold">Cliente:</span>
+													<span><%- id_projeto.cliente_responsavel %></span>
+												</h5>
 											</div>
 											<div class="mt-auto w-100">
 												<div class="progresso">
-													<div class="inside">100%</div>
+													<div class="inside" style="width: <%= porcentagemAprovacao%>%;"><%= porcentagemAprovacao%> %</div>
 												</div>
 											</div>
 										</div>
@@ -92,7 +102,13 @@
 																	</div>
 																	<div
 																		class="p-2 bd-highlight col-2 cardsessao cardtarefa">
-																		<i class="bi bi-circle"></i>
+
+																		<% if (card.aprovacao===true) { %>
+																			<i
+																				class="iconaprovado bi bi-check-circle-fill"></i>
+																			<% } else { %>
+																				<i class="bi bi-circle"></i>
+																				<% } %>
 																	</div>
 																</div>
 															</div>
@@ -128,7 +144,7 @@
 																				<% } else { %>
 																					<div class="text-center">
 																						<form class="mb-5"
-																							action="/cards/update/<%= id_usuario_logado %>/<%= id_projeto %>/<%= card.id %>"
+																							action="/cards/update/<%= id_usuario_logado %>/<%= id_projeto.id %>/<%= card.id %>"
 																							method="POST">
 																							<div class="">
 																								<textarea
@@ -145,55 +161,61 @@
 																					<% } %>
 																						<% } %>
 																							<% if (liderLogado) { %>
+
 																								<% if
 																									(card.aprovacao===true)
 																									{ %>
 																									<h5
-																										class="text-warning">
-																										Aprovado
-																									</h5>
+																										class="aprovar text-warning">
+																										Aprovado!</h5>
 																									<% } else { %>
 																										<div
-																											class="text-center mb-5">
+																											class="text-center">
 																											<form
-																												class="justify-content-between d-flex"
-																												action="/cards/update/<%= id_usuario_logado %>/<%= id_projeto %>/<%= card.id %>"
+																												class="telaform"
+																												action="/cards/update/<%= id_usuario_logado %>/<%= id_projeto.id %>/<%= card.id %>"
 																												method="POST">
-																												<span
-																													class="form-check">
-																													<input
-																														class="form-check-input"
-																														type="checkbox"
-																														value="1">
-																													<label
-																														class="fw-bold form-check-label">
-																														Aprovado?
-																													</label>
-																												</span>
+
+																												<div
+																													class="mb-3">
+																													<div
+																														class="aprovar text-center">
+																														<div
+																															class="">
+																															<h5
+																																class="fw-bold">
+																																Aprovado?
+																															</h5>
+																															<input
+																																name="aprovacao"
+																																class="form-check-input"
+																																type="checkbox"
+																																value="1"
+																																id="aprovacao">
+																															<label
+																																class="form-check-label fw-bold"
+																																for="aprovacao">Sim?</label>
+																															<input
+																																name="aprovacao"
+																																class="form-check-input"
+																																type="checkbox"
+																																value="1"
+																																id="aprovacao">
+																															<label
+																																class="form-check-label fw-bold"
+																																for="aprovacao">Não</label>
+																														</div>
+																														<button
+																															type="submit"
+																															class="btn btn-sm btn-primary">Enviar</button>
+																													</div>
+
+																												</div>
 
 
-																												<button
-																													type="submit"
-																													class="btn btn-sm btn-primary">Aprovar
-																												</button>
+
 																											</form>
 																										</div>
-
-																										<div
-																											class="form-check form-switch mb-3">
-																											<label
-																												class="form-check-label"
-																												for="aprovacao">Aguardando
-																												aprovação</label>
-																											<input
-																												value="1"
-																												name="aprovacao"
-																												class="form-check-input"
-																												type="checkbox"
-																												role="switch"
-																												id="aprovacao">
-																										</div>
-
 
 																										<% } %>
 																											<% } %>
@@ -202,7 +224,7 @@
 																													class="text-center">
 																													<form
 																														class="mb-5"
-																														action="/comentarios/add/<%= id_usuario_logado %>/<%= id_projeto %>/<%= card.id %>"
+																														action="/comentarios/add/<%= id_usuario_logado %>/<%= id_projeto.id %>/<%= card.id %>"
 																														method="POST">
 																														<div>
 																															<textarea
@@ -224,7 +246,7 @@
 																														class="fw-bold mb-3">
 																														<i
 																															class="bi bi-chat-dots"></i>
-																														Comentarios
+																														Comentarios 
 																													</h5>
 
 
@@ -274,17 +296,18 @@
 																</div>
 															</div>
 														</div>
-														<% } }); %>
+														<% } %>
+															<% }); %>
 
-															<div><a class="align-middle cartaoadd mb-2 rounded-4 d-flex align-items-center"
-																	data-bs-toggle="modal"
-																	data-bs-target="#criaCard<%= etapa.id %>">
-																	Adicionar tarefa
-																	<span
-																		class="bg-light ms-auto rounded-5 d-flex align-items-center justify-content-center">
-																		<i class="bi bi-plus"></i>
-																	</span>
-																</a></div>
+																<div><a class="align-middle cartaoadd mb-2 rounded-4 d-flex align-items-center"
+																		data-bs-toggle="modal"
+																		data-bs-target="#criaCard<%= etapa.id %>">
+																		Adicionar tarefa
+																		<span
+																			class="bg-light ms-auto rounded-5 d-flex align-items-center justify-content-center">
+																			<i class="bi bi-plus"></i>
+																		</span>
+																	</a></div>
 											</div>
 
 
@@ -293,12 +316,12 @@
 
 												<div class="col-5">
 													<a href="#"><i class="bi bi-chat-dots"></i><span>
-															4</span></a>
+														<%= contTarefa1 %> </span></a>
 												</div>
 												<div class="col-2 "></div>
 												<div class="col-5 ">
 													<a href="#"><i class="bi bi-check2-square"></i>
-														<span>4</span></a>
+														<span><%= fasesCard %> </span></a>
 												</div>
 
 											</div>
@@ -308,6 +331,7 @@
 
 										</div>
 									</div>
+
 									<!-- Modal -->
 									<div class="modal fade modal_Z_index" id="criaCard<%= etapa.id %>" tabindex="-1"
 										aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -321,7 +345,7 @@
 														aria-label="Close"></button>
 												</div>
 												<form class="p-3"
-													action="/cards/add/<%= id_usuario_logado %>/<%= id_projeto %>"
+													action="/cards/add/<%=id_usuario_logado %>/<%=id_projeto.id %>"
 													method="POST">
 													<div class="modal-body">
 														<!-- Nome do card -->
@@ -348,7 +372,7 @@
 															tarefa
 															<span
 																class="bg-light ms-auto rounded-5 align-items-center justify-content-center">
-																<i class="bi bi-plus"></i>
+																<i class="bi bi-plus"></i> </span>
 														</button>
 													</div>
 												</form>
@@ -356,10 +380,10 @@
 										</div>
 									</div>
 
-									<% }); %>
 
-										<!-- Exemplos de variaveis e tags que vc pode usar e como usar -->
-										<!-- <% if (pode_colaborar) { %>
+
+									<!-- Exemplos de variaveis e tags que vc pode usar e como usar -->
+									<!-- <% if (pode_colaborar) { %>
 											<p>ID de Pode Colaborar: <%= pode_colaborar %></p>
 										<% } else { %>
 											<p>Usuário não tem permissão para colaborar.</p>
@@ -382,7 +406,7 @@
 										<% }); %> 
 									-->
 
-
+									<% }); %>
 							</div>
 
 						</div>
@@ -391,20 +415,20 @@
 			</div>
 		</div>
 
-	<!-- jQuery (opcional) -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-		integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/5hb7ie3zZiA5n5+l5g5+G5Xzt4bE+U5VpBL2ep"
-		crossorigin="anonymous"></script>
+		<!-- jQuery (opcional) -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/5hb7ie3zZiA5n5+l5g5+G5Xzt4bE+U5VpBL2ep"
+			crossorigin="anonymous"></script>
 
-	<!-- Bootstrap JS -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-		crossorigin="anonymous"></script>
+		<!-- Bootstrap JS -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+			crossorigin="anonymous"></script>
 
-	<!-- Seu script customizado (se necessário) -->
-	<script>
-		// Adicione aqui qualquer código JavaScript necessário para inicializar ou ajustar o comportamento dos seus modais.
-	</script>
+		<!-- Seu script customizado (se necessário) -->
+		<script>
+			// Adicione aqui qualquer código JavaScript necessário para inicializar ou ajustar o comportamento dos seus modais.
+		</script>
 </body>
 
 </html>
