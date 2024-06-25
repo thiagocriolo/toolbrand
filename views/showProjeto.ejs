@@ -104,19 +104,45 @@
 						<form action="/projetos/update/<%= id_usuario %>/<%= projeto.id %>" method="POST">
 
 							<div class="mb-3">
-								<p class="fw-bold">Finalizar projeto</p>
-								<div class="form-check">
-									<input name="status" class="form-check-input" type="checkbox" value="1"
-										id="editaProjeto">
-									<label class="form-check-label" for="editaProjeto">Sim</label>
-								</div>
+								<p class="fw-bold">Editar projeto</p>
+								
+									<div class="mb-3">
+										<input type="text" value="<%= projeto.nome %>"  placeholder="Nome da Marca" class="form-control" id="nome" name="nome">
+									</div>
+									<div class="mb-3">
+										<input type="date" value="<%= projeto.data_ini %>"  placeholder="Previsão de início" class="form-control" id="data_ini"
+											name="data_ini">
+									</div>
+									<div class="mb-3">
+										<input type="date" value="<%= projeto.data_fim %>"  placeholder="Previsão de encerramento" class="form-control" id="data_fim"
+											name="data_fim">
+									</div>
+									<div class="mb-3">
+										<input type="textarea" value="<%= projeto.descricao %>"  placeholder="Descrição do projeto" class="form-control"
+											id="descricao" name="descricao">
+									</div>
+									<div class="mb-3">
+										<input type="textarea" value="<%= projeto.tipo_projeto %>"  placeholder="Tipo do projeto" class="form-control" id="tipo_projeto"
+											name="tipo_projeto">
+									</div>
+									
+									<div class="form-check">
+										<div class="">
+											<span>Projeto finalizado ?</span>
+										</div>
+										<input name="status" class="form-check-input" type="checkbox" value="1"
+											id="editaProjeto" >
+										<label class="form-check-label" for="editaProjeto">Sim</label>
+									</div>
+
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-bs-dismiss="modal">Cancelar</button>
+										<button type="submit" class="btn btn-primary">Finalizar</button>
+									</div>
+															
 							</div>
 
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
-									data-bs-dismiss="modal">Cancelar</button>
-								<button type="submit" class="btn btn-primary">Finalizar</button>
-							</div>
 						</form>
 					</div>
 

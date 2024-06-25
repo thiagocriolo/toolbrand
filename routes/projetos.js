@@ -50,11 +50,18 @@ router.post('/add/:id', async (req, res) => {
 
 router.post('/update/:id_usuario_logado/:id_projeto', (req, res) => {
     const { id_usuario_logado, id_projeto } = req.params;
-    const { status } = req.body;
+    const { status,nome, data_ini, data_fim, descricao, tipo_projeto } = req.body;
 
     // Atualização do projeto
     Projeto.update(
-        { status }, // Campos a serem atualizados
+        { 
+            status,
+            nome, 
+            data_ini, 
+            data_fim, 
+            descricao, 
+            tipo_projeto  
+        }, // Campos a serem atualizados
         { where: { id: id_projeto } } // Condição para selecionar o projeto a ser atualizado
     )
     .then(() => res.redirect(`/projetos/show/${id_usuario_logado}/${id_projeto}`))
