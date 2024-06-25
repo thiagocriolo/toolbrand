@@ -1,7 +1,7 @@
 	<nav class="navbar col mw-2 bg-body-tertiary fixed-top">
 		<div class="container-fluid min-vh-100">
 			<div class="avatarheader mb-auto mt-3">
-				<img src="/images/Avatars/avatars_2.png">
+				<img src="/images/Avatars/avatars_<%- user.avatar %>.png" alt="<%- user.avatar %>" >
 			</div>
 
 			<button class="navbar-toggler mb-4" type="button" data-bs-toggle="offcanvas"
@@ -17,7 +17,7 @@
 				<div class="offcanvas-header">
 					<div class="perfilmenu">
 						<div class="avatarmenu mb-auto mt-3">
-							<img src="/images/Avatars/avatars_2.png">
+							<img src="/images/Avatars/avatars_<%- user.avatar %>.png" alt="<%- user.avatar %>" >
 						</div>
 						
 						<h4 class="offcanvas-title d-none d-sm-block" id="offcanvas"><%- user.nome %></h4>

@@ -18,7 +18,9 @@ const User = db.define('user',{
     senha:{
         type: Sequelize.STRING,
     },
-    
+    avatar:{
+        type: Sequelize.INTEGER,
+    },
 },
     {
         tableName: 'users',

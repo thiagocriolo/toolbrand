@@ -81,7 +81,7 @@ router.get('/show/:id', async (req, res) => {
 // Add um novo user através da form
 router.post('/add', (req, res) => {
 
-    let { email, telefone, profissao, nome, senha } = req.body;
+    let { email, telefone, profissao, nome, senha, avatar } = req.body;
 
     // insert
     User.create({
@@ -89,7 +89,8 @@ router.post('/add', (req, res) => {
         telefone, 
         profissao, 
         nome, 
-        senha
+        senha,
+        avatar
     })
     .then(() => res.redirect('/'))
     .catch(err => console.log(err));
