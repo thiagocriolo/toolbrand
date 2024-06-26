@@ -2,7 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Projeto = require('../models/Projeto');
 const User = require('../models/User');
-const UsuarioDoProjeto = require('../models/UsuarioDoProjeto'); 
+const UsuarioDoProjeto = require('../models/UsuarioDoProjeto');
+const Etapa = require('../models/Etapa');
+const Card = require('../models/Card');
+const Comentario = require('../models/Comentario');
 const { where } = require('sequelize');
 const Sequelize = require('sequelize');
 
@@ -50,22 +53,22 @@ router.post('/add/:id', async (req, res) => {
 
 router.post('/update/:id_usuario_logado/:id_projeto', (req, res) => {
     const { id_usuario_logado, id_projeto } = req.params;
-    const { status,nome, data_ini, data_fim, descricao, tipo_projeto } = req.body;
+    const { status, nome, data_ini, data_fim, descricao, tipo_projeto } = req.body;
 
     // Atualização do projeto
     Projeto.update(
-        { 
+        {
             status,
-            nome, 
-            data_ini, 
-            data_fim, 
-            descricao, 
-            tipo_projeto  
+            nome,
+            data_ini,
+            data_fim,
+            descricao,
+            tipo_projeto
         }, // Campos a serem atualizados
         { where: { id: id_projeto } } // Condição para selecionar o projeto a ser atualizado
     )
-    .then(() => res.redirect(`/projetos/show/${id_usuario_logado}/${id_projeto}`))
-    .catch(err => console.log(err));
+        .then(() => res.redirect(`/projetos/show/${id_usuario_logado}/${id_projeto}`))
+        .catch(err => console.log(err));
 });
 
 
@@ -102,36 +105,305 @@ router.get('/show/:id_usuario/:id_projeto', async (req, res) => {
             }
         });
 
-       
         const UsuariosDoProjeto = await UsuarioDoProjeto.findAll({
             where: {
                 id_projeto: id_projeto,
             }
-        });       
+        });
         const todosIdsColabs = UsuariosDoProjeto
-        .filter(up => up.tipo_usuario !== 1)
-        .map(up => up.id_usuario);
-        
-         // Buscar os projetos onde o usuário é líder
-         const ImprimeTodosUsuariosDoProjeto = await User.findAll({
+            .filter(up => up.tipo_usuario !== 1)
+            .map(up => up.id_usuario);
+
+        // Buscar os projetos onde o usuário é líder
+        const ImprimeTodosUsuariosDoProjeto = await User.findAll({
             where: {
                 id: todosIdsColabs
             }
         });
-        
-        // Mandando para a view todos os usuarios do projeto
 
+
+        /////////////////// CONTADORES DE STATUS 01 /////////////////// 
+
+        // Conta todos os colaboradores do projeto
+        const quantidadeDeColaboradores1 = await UsuarioDoProjeto.count({
+            where: {
+                id_projeto: id_projeto,
+            }
+        });
+
+        // Conta todos os comentários do projeto       
+        const quantidadeDeComentarios1 = await Comentario.count({
+            where: {
+                id_projeto: id_projeto,
+            }
+        });
+
+        // Conta todos os cards da fase
+        const quantidadeDeCards1 = await Card.count({
+            where: {
+                id_projeto: id_projeto,
+                id_etapa: {
+                    [Op.between]: [1, 4]
+                }
+            }
+        });
+
+        // Conta todos os cards APROVADOS da fase
+        const quantidadeDeCardsAprovados1 = await Card.count({
+            where: {
+                id_projeto: id_projeto,
+                id_etapa: {
+                    [Op.between]: [1, 4]
+                },
+                aprovacao: 1
+            }
+        });
+
+        // Garantir que os valores sejam numéricos e não nulos
+        const totalCards1 = quantidadeDeCards1 || 0;
+        const totalCardsAprovados1 = quantidadeDeCardsAprovados1 || 0;
+
+        // Evitar divisão por zero
+        const porcentagemAprovacao1 = totalCards1 > 0 ? (totalCardsAprovados1 / totalCards1) * 100 : 0;
+
+        let statusFase1 = "aguardando";
+
+        if (porcentagemAprovacao1 === 100) {
+            statusFase1 = "Concluido";
+            statusClasse1 = "concluido";
+        } else if (porcentagemAprovacao1 === 0) {
+            statusFase1 = "Aguardando";
+            statusClasse1 = "aguardando";
+        } else {
+            statusFase1 = "Em andamento";
+            statusClasse1 = "andamento";
+        }
+
+
+        /////////////////// CONTADORES DE STATUS 02 /////////////////// 
+
+        // Conta todos os colaboradores do projeto
+        const quantidadeDeColaboradores2 = await UsuarioDoProjeto.count({
+            where: {
+                id_projeto: id_projeto,
+            }
+        });
+
+        // Conta todos os comentários do projeto       
+        const quantidadeDeComentarios2 = await Comentario.count({
+            where: {
+                id_projeto: id_projeto,
+            }
+        });
+
+        // Conta todos os cards da fase
+        const quantidadeDeCards2 = await Card.count({
+            where: {
+                id_projeto: id_projeto,
+                id_etapa: {
+                    [Op.between]: [5, 8]
+                }
+            }
+        });
+
+        // Conta todos os cards APROVADOS da fase
+        const quantidadeDeCardsAprovados2 = await Card.count({
+            where: {
+                id_projeto: id_projeto,
+                id_etapa: {
+                    [Op.between]: [5, 8]
+                },
+                aprovacao: 1
+            }
+        });
+
+        // Garantir que os valores sejam numéricos e não nulos
+        const totalCards2 = quantidadeDeCards2 || 0;
+        const totalCardsAprovados2 = quantidadeDeCardsAprovados2 || 0;
+
+        // Evitar divisão por zero
+        const porcentagemAprovacao2 = totalCards2 > 0 ? (totalCardsAprovados2 / totalCards2) * 100 : 0;
+
+        let statusFase2 = "aguardando";
+
+        if (porcentagemAprovacao2 === 100) {
+            statusFase2 = "Concluido";
+            statusClasse2 = "concluido";
+        } else if (porcentagemAprovacao2 === 0) {
+            statusFase2 = "Aguardando";
+            statusClasse2 = "aguardando";
+        } else {
+            statusFase2 = "Em andamento";
+            statusClasse2 = "andamento";
+        }
+
+        /////////////////// CONTADORES DE STATUS 03 /////////////////// 
+
+        // Conta todos os colaboradores do projeto
+        const quantidadeDeColaboradores3 = await UsuarioDoProjeto.count({
+            where: {
+                id_projeto: id_projeto,
+            }
+        });
+
+        // Conta todos os comentários do projeto       
+        const quantidadeDeComentarios3 = await Comentario.count({
+            where: {
+                id_projeto: id_projeto,
+            }
+        });
+
+        // Conta todos os cards da fase
+        const quantidadeDeCards3 = await Card.count({
+            where: {
+                id_projeto: id_projeto,
+                id_etapa: {
+                    [Op.between]: [9, 12]
+                }
+            }
+        });
+
+        // Conta todos os cards APROVADOS da fase
+        const quantidadeDeCardsAprovados3 = await Card.count({
+            where: {
+                id_projeto: id_projeto,
+                id_etapa: {
+                    [Op.between]: [9, 12]
+                },
+                aprovacao: 1
+            }
+        });
+
+        // Garantir que os valores sejam numéricos e não nulos
+        const totalCards3 = quantidadeDeCards3 || 0;
+        const totalCardsAprovados3 = quantidadeDeCardsAprovados3 || 0;
+
+        // Evitar divisão por zero
+        const porcentagemAprovacao3 = totalCards3 > 0 ? (totalCardsAprovados3 / totalCards3) * 100 : 0;
+
+        let statusFase3 = "aguardando";
+
+        if (porcentagemAprovacao3 === 100) {
+            statusFase3 = "Concluido";
+            statusClasse3 = "concluido";
+        } else if (porcentagemAprovacao3 === 0) {
+            statusFase3 = "Aguardando";
+            statusClasse3 = "aguardando";
+        } else {
+            statusFase3 = "Em andamento";
+            statusClasse3 = "andamento";
+        }
+
+
+
+        /////////////////// CONTADORES DE STATUS 04 /////////////////// 
+
+        // Conta todos os colaboradores do projeto
+        const quantidadeDeColaboradores4 = await UsuarioDoProjeto.count({
+            where: {
+                id_projeto: id_projeto,
+            }
+        });
+
+        // Conta todos os comentários do projeto       
+        const quantidadeDeComentarios4 = await Comentario.count({
+            where: {
+                id_projeto: id_projeto,
+            }
+        });
+
+        // Conta todos os cards da fase
+        const quantidadeDeCards4 = await Card.count({
+            where: {
+                id_projeto: id_projeto,
+                id_etapa: {
+                    [Op.between]: [13, 16]
+                }
+            }
+        });
+
+        // Conta todos os cards APROVADOS da fase
+        const quantidadeDeCardsAprovados4 = await Card.count({
+            where: {
+                id_projeto: id_projeto,
+                id_etapa: {
+                    [Op.between]: [13, 16]
+                },
+                aprovacao: 1
+            }
+        });
+
+        // Garantir que os valores sejam numéricos e não nulos
+        const totalCards4 = quantidadeDeCards4 || 0;
+        const totalCardsAprovados4 = quantidadeDeCardsAprovados4 || 0;
+
+        // Evitar divisão por zero
+        const porcentagemAprovacao4 = totalCards4 > 0 ? (totalCardsAprovados4 / totalCards4) * 100 : 0;
+
+        let statusFase4 = "aguardando";
+
+        if (porcentagemAprovacao4 === 100) {
+            statusFase4 = "Concluido";
+            statusClasse4 = "concluido";
+        } else if (porcentagemAprovacao4 === 0) {
+            statusFase4 = "Aguardando";
+            statusClasse4 = "aguardando";
+        } else {
+            statusFase4 = "Em andamento";
+            statusClasse4 = "andamento";
+        }
+
+
+
+
+
+
+
+
+        // Mandando para a view todos os usuarios do projeto
         // Adiciona um pequeno atraso antes de renderizar a página
         setTimeout(() => {
-            res.render('showprojeto', { 
-                projeto, 
-                id_usuario, 
-                id_projeto, 
-                usuarios, 
+            res.render('showprojeto', {
+                projeto,
+                id_usuario,
+                id_projeto,
+                usuarios,
                 user,
-                usuarioProjetoLider, 
+                usuarioProjetoLider,
                 usuarioProjetoCliente,
-                ImprimeTodosUsuariosDoProjeto
+                ImprimeTodosUsuariosDoProjeto,
+
+                quantidadeDeColaboradores1,
+                quantidadeDeComentarios1,
+                totalCards1,
+                totalCardsAprovados1,
+                porcentagemAprovacao1,
+                statusFase1,
+                statusClasse1,
+
+                quantidadeDeColaboradores2,
+                quantidadeDeComentarios2,
+                totalCards2,
+                totalCardsAprovados2,
+                porcentagemAprovacao2,
+                statusFase2,
+                statusClasse2,
+
+                quantidadeDeColaboradores3,
+                quantidadeDeComentarios3,
+                totalCards3,
+                totalCardsAprovados3,
+                porcentagemAprovacao3,
+                statusFase3,
+                statusClasse3,
+
+                quantidadeDeColaboradores4,
+                quantidadeDeComentarios4,
+                totalCards4,
+                totalCardsAprovados4,
+                porcentagemAprovacao4,
+                statusFase4,
+                statusClasse4,
             });
         }, 500); // 500ms de atraso
 

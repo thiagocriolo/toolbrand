@@ -500,6 +500,10 @@ input[type="radio"]:checked + label img{
 	padding: 6px 0px;
 }
 
+.aguardando .row  {
+	background-color: #cccccc;
+}
+
 .aguardando .anexos a {
 	background-color: #888;
 }

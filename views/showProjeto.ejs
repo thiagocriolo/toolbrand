@@ -214,18 +214,20 @@
 
 
 									
-										<div class="fase  ">
-											<div class="row p-4 h-100 concluido " id="diagnostico">
+										<div class="fase  <%= statusClasse1 %>">
+											<div class="row p-4 h-100  " id="diagnostico">
 												<div class="col-lg-1 col-md-2 projetoinfo anexos">
-													<div class="anexo mb-2 align-items-center ">
-														<a href="#"><i class="bi bi-people-fill"></i><span> 2</span></a>
+													<div class="anexo mb-3 align-items-center ">
+														<a href="#"><i class="bi bi-people-fill"></i><span> <%-
+																	quantidadeDeColaboradores1 %> </span></a>
 													</div>
-													<div class="comentarios mb-2 align-items-center ">
-														<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
+													<div class="comentarios mb-3 align-items-center ">
+														<a href="#"><i class="bi bi-chat-dots"></i><span> <%-
+																	quantidadeDeComentarios1 %></span></a>
 													</div>
 													<div class="fases align-items-center ">
 														<a href="#"><i class="bi bi-check2-square"></i>
-															<span>6</span></a>
+															<span><%- totalCards1%>/<%- totalCardsAprovados1%></span></a>
 													</div>
 												</div>
 												<div class="col-lg-9 col-md-8 cabecarioprojeto  ">
@@ -233,12 +235,12 @@
 														<div class="lista">
 															<a href="/fases/faseUm/<%- id_usuario %>/<%- id_projeto %>">
 																<h2>1. Diagnóstico  </h2>
-																<h3><span>Concluído </span></h3>
+																<h3><span> <%= statusFase1 %> </span></h3>
 															</a>
 														</div>
 														<div class="mt-auto w-100">
 															<div class="progresso">
-																<div class="inside">100%</div>
+																<div class="inside" style="width: <%= porcentagemAprovacao1 %>%;"><%= porcentagemAprovacao1 %>%</div>
 															</div>
 														</div>
 													</div>
@@ -246,18 +248,20 @@
 											</div>
 										</div>
 									
-										<div class="fase  ">
-											<div class="row p-4 h-100 andamento " id="estrategia">
+										<div class="fase  <%= statusClasse2 %>">
+											<div class="row p-4 h-100  " id="diagnostico">
 												<div class="col-lg-1 col-md-2 projetoinfo anexos">
-													<div class="anexo mb-2 align-items-center ">
-														<a href="#"><i class="bi bi-people-fill"></i><span> 2</span></a>
+													<div class="anexo mb-3 align-items-center ">
+														<a href="#"><i class="bi bi-people-fill"></i><span> <%-
+																	quantidadeDeColaboradores2 %> </span></a>
 													</div>
-													<div class="comentarios mb-2 align-items-center ">
-														<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
+													<div class="comentarios mb-3 align-items-center ">
+														<a href="#"><i class="bi bi-chat-dots"></i><span> <%-
+																	quantidadeDeComentarios2 %></span></a>
 													</div>
 													<div class="fases align-items-center ">
 														<a href="#"><i class="bi bi-check2-square"></i>
-															<span>6</span></a>
+															<span><%- totalCards2%>/<%- totalCardsAprovados2%></span></a>
 													</div>
 												</div>
 												<div class="col-lg-9 col-md-8 cabecarioprojeto  ">
@@ -265,76 +269,80 @@
 														<div class="lista">
 															<a href="/fases/faseDois/<%- id_usuario %>/<%- id_projeto %>">
 																<h2>2. Estratégia  </h2>
-																<h3><span>Em andamento </span></h3>
+																<h3><span> <%= statusFase2 %> </span></h3>
 															</a>
 														</div>
 														<div class="mt-auto w-100">
 															<div class="progresso">
-																<div class="inside">100%</div>
+																<div class="inside" style="width: <%= porcentagemAprovacao2 %>%;"><%= porcentagemAprovacao2 %>%</div>
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-									
-										<div class="fase  ">
-											<div class="row p-4 h-100 aguardando" id="criacao">
+
+										<div class="fase  <%= statusClasse3 %>">
+											<div class="row p-4 h-100  " id="diagnostico">
 												<div class="col-lg-1 col-md-2 projetoinfo anexos">
-													<div class="anexo mb-2 align-items-center ">
-														<a href="#"><i class="bi bi-people-fill"></i><span> 2</span></a>
+													<div class="anexo mb-3 align-items-center ">
+														<a href="#"><i class="bi bi-people-fill"></i><span> <%-
+																	quantidadeDeColaboradores3 %> </span></a>
 													</div>
-													<div class="comentarios mb-2 align-items-center ">
-														<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
+													<div class="comentarios mb-3 align-items-center ">
+														<a href="#"><i class="bi bi-chat-dots"></i><span> <%-
+																	quantidadeDeComentarios3 %></span></a>
 													</div>
 													<div class="fases align-items-center ">
 														<a href="#"><i class="bi bi-check2-square"></i>
-															<span>6</span></a>
+															<span><%- totalCards3%>/<%- totalCardsAprovados3%></span></a>
 													</div>
 												</div>
 												<div class="col-lg-9 col-md-8 cabecarioprojeto  ">
 													<div class="d-flex h-100 align-items-start flex-column mb-3">
 														<div class="lista">
 															<a href="/fases/faseTres/<%- id_usuario %>/<%- id_projeto %>">
-																<h2>3. Criação </h2>
-																<h3><span>Aguardando </span></h3>
+																<h2>3. Criação  </h2>
+																<h3><span> <%= statusFase3 %> </span></h3>
 															</a>
 														</div>
 														<div class="mt-auto w-100">
 															<div class="progresso">
-																<div class="inside">100%</div>
+																<div class="inside" style="width: <%= porcentagemAprovacao3 %>%;"><%= porcentagemAprovacao3 %>%</div>
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-									
-										<div class="fase  ">
-											<div class="row p-4 h-100 aguardando" id="desdobramentos">
+
+										<div class="fase  <%= statusClasse4 %>">
+											<div class="row p-4 h-100  " id="diagnostico">
 												<div class="col-lg-1 col-md-2 projetoinfo anexos">
-													<div class="anexo mb-2 align-items-center ">
-														<a href="#"><i class="bi bi-people-fill"></i><span> 2</span></a>
+													<div class="anexo mb-3 align-items-center ">
+														<a href="#"><i class="bi bi-people-fill"></i><span> <%-
+																	quantidadeDeColaboradores4 %> </span></a>
 													</div>
-													<div class="comentarios mb-2 align-items-center ">
-														<a href="#"><i class="bi bi-chat-dots"></i><span> 4</span></a>
+													<div class="comentarios mb-3 align-items-center ">
+														<a href="#"><i class="bi bi-chat-dots"></i><span> <%-
+																	quantidadeDeComentarios4 %></span></a>
 													</div>
 													<div class="fases align-items-center ">
 														<a href="#"><i class="bi bi-check2-square"></i>
-															<span>6</span></a>
+															<span><%- totalCards4%>/<%- totalCardsAprovados4%></span></a>
 													</div>
 												</div>
 												<div class="col-lg-9 col-md-8 cabecarioprojeto  ">
 													<div class="d-flex h-100 align-items-start flex-column mb-3">
 														<div class="lista">
 															<a href="/fases/faseQuatro/<%- id_usuario %>/<%- id_projeto %>">
-																<h2>4. Desdobramentos </h2>
-																<h3><span>Aguardando </span></h3>
+																<h2>4. Desdobramentos  </h2>
+																<h3><span> <%= statusFase4 %> </span></h3>
 															</a>
 														</div>
 														<div class="mt-auto w-100">
 															<div class="progresso">
-																<div class="inside">100%</div>
+																<div class="inside" style="width: <%= porcentagemAprovacao4 %>%;"><%= porcentagemAprovacao4 %>%</div>
 															</div>
 														</div>
 													</div>

@@ -106,7 +106,7 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
 
 
 
-        /////////////////// CONTADORES /////////////////// 
+        /////////////////// CONTADORES DE STATUS /////////////////// 
 
         // Conta todos os colaboradores do projeto
         const quantidadeDeColaboradores = await UsuarioDoProjeto.count({
@@ -166,26 +166,7 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
 
 
 
-        // Conta todos os cards da fase
-        const comentariosCard = await Card.count({
-            where: {
-                id: 1,
-            }
-        });
 
-        // Conta todos os cards da ETAPA 01
-        const fasesCard = await Card.count({
-            where: {
-                id_etapa: 1,
-            }
-        });
-
-        const contTarefa1 = await Card.count({
-            where: {
-                id_projeto: id_projeto,
-                id_etapa: 3,
-            }
-        });
 
 
         // Adicionando a uma variavel todos os usuarios, para usar o id como parametro no imprime todos
@@ -216,8 +197,6 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
             quantidadeDeComentarios,
             quantidadeDeColaboradores,
             
-            comentariosCard,
-            contTarefa1,
 
 
             quantidadeDeCards,
@@ -235,7 +214,7 @@ router.get('/faseUm/:id_usuario_logado/:id_projeto', async (req, res) => {
     }
 });
 
-// Definindo a rota para '/faseUm'
+// Definindo a rota para '/faseDois'
 router.get('/faseDois/:id_usuario_logado/:id_projeto', async (req, res) => {
     const { id_usuario_logado, id_projeto } = req.params;
 
@@ -250,7 +229,7 @@ router.get('/faseDois/:id_usuario_logado/:id_projeto', async (req, res) => {
             }
         });
 
-        // 
+        // Encontra projeto pelo ID
         const projeto = await Projeto.findOne({
             where: {
                 id: id_projeto,
@@ -258,8 +237,6 @@ router.get('/faseDois/:id_usuario_logado/:id_projeto', async (req, res) => {
         });
 
         // Buscar o usuário pelo ID
-
-
         const user = await User.findOne({
             where: { id: id_usuario_logado, }
         });     
@@ -328,14 +305,21 @@ router.get('/faseDois/:id_usuario_logado/:id_projeto', async (req, res) => {
             }
         });
 
-        // Conta todos os colaboradores da fase 
+
+
+
+
+
+        /////////////////// CONTADORES DE STATUS /////////////////// 
+
+        // Conta todos os colaboradores do projeto
         const quantidadeDeColaboradores = await UsuarioDoProjeto.count({
             where: {
                 id_projeto: id_projeto,
             }
         });
 
-        // Conta todos os comentários da fase        
+        // Conta todos os comentários do projeto       
         const quantidadeDeComentarios = await Comentario.count({
             where: {
                 id_projeto: id_projeto,
@@ -346,6 +330,9 @@ router.get('/faseDois/:id_usuario_logado/:id_projeto', async (req, res) => {
         const quantidadeDeCards = await Card.count({
             where: {
                 id_projeto: id_projeto,
+                id_etapa: {
+                    [Op.between]: [5, 8]
+                }
             }
         });
 
@@ -353,34 +340,37 @@ router.get('/faseDois/:id_usuario_logado/:id_projeto', async (req, res) => {
         const quantidadeDeCardsAprovados = await Card.count({
             where: {
                 id_projeto: id_projeto,
-                aprovacao: {[Op.ne] : 0},
+                id_etapa: {
+                    [Op.between]: [5, 8]
+                },
+                aprovacao: 1
             }
         });
 
-        const porcentagemAprovacao = (quantidadeDeCardsAprovados / quantidadeDeCards) * 100;
+        // Garantir que os valores sejam numéricos e não nulos
+        const totalCards = quantidadeDeCards || 0;
+        const totalCardsAprovados = quantidadeDeCardsAprovados || 0;
+
+        // Evitar divisão por zero
+        const porcentagemAprovacao = totalCards > 0 ? (totalCardsAprovados / totalCards) * 100 : 0;
+
+        let statusFase = "aguardando";
+
+        if (porcentagemAprovacao === 100) {
+            statusFase = "Concluido";
+            statusClasse = "concluido";
+        } else if (porcentagemAprovacao === 0) {
+            statusFase = "Aguardando";
+            statusClasse = "aguardando";
+        } else {
+            statusFase = "Em andamento";
+            statusClasse = "andamento";
+        }
 
 
 
-        // Conta todos os cards da fase
-        const comentariosCard = await Card.count({
-            where: {
-                id: 1,
-            }
-        });
 
-        // Conta todos os cards da ETAPA 01
-        const fasesCard = await Card.count({
-            where: {
-                id_etapa: 1,
-            }
-        });
 
-        const contTarefa1 = await Card.count({
-            where: {
-                id_projeto: id_projeto,
-                id_etapa: 3,
-            }
-        });
 
 
         // Adicionando a uma variavel todos os usuarios, para usar o id como parametro no imprime todos
@@ -407,14 +397,18 @@ router.get('/faseDois/:id_usuario_logado/:id_projeto', async (req, res) => {
             cards,
             todosComentariosDoProjeto,
             user,
+
             quantidadeDeComentarios,
             quantidadeDeColaboradores,
+            
+
+
             quantidadeDeCards,
-            comentariosCard,
-            contTarefa1,
             quantidadeDeCardsAprovados,
             porcentagemAprovacao,
-            fasesCard            
+            statusClasse,
+            statusFase
+                        
         });
 
 
@@ -424,7 +418,8 @@ router.get('/faseDois/:id_usuario_logado/:id_projeto', async (req, res) => {
     }
 });
 
-// Definindo a rota para '/faseUm'
+
+// Definindo a rota para '/faseTres'
 router.get('/faseTres/:id_usuario_logado/:id_projeto', async (req, res) => {
     const { id_usuario_logado, id_projeto } = req.params;
 
@@ -439,7 +434,7 @@ router.get('/faseTres/:id_usuario_logado/:id_projeto', async (req, res) => {
             }
         });
 
-        // 
+        // Encontra projeto pelo ID
         const projeto = await Projeto.findOne({
             where: {
                 id: id_projeto,
@@ -447,8 +442,6 @@ router.get('/faseTres/:id_usuario_logado/:id_projeto', async (req, res) => {
         });
 
         // Buscar o usuário pelo ID
-
-
         const user = await User.findOne({
             where: { id: id_usuario_logado, }
         });     
@@ -517,14 +510,21 @@ router.get('/faseTres/:id_usuario_logado/:id_projeto', async (req, res) => {
             }
         });
 
-        // Conta todos os colaboradores da fase 
+
+
+
+
+
+        /////////////////// CONTADORES DE STATUS /////////////////// 
+
+        // Conta todos os colaboradores do projeto
         const quantidadeDeColaboradores = await UsuarioDoProjeto.count({
             where: {
                 id_projeto: id_projeto,
             }
         });
 
-        // Conta todos os comentários da fase        
+        // Conta todos os comentários do projeto       
         const quantidadeDeComentarios = await Comentario.count({
             where: {
                 id_projeto: id_projeto,
@@ -535,6 +535,9 @@ router.get('/faseTres/:id_usuario_logado/:id_projeto', async (req, res) => {
         const quantidadeDeCards = await Card.count({
             where: {
                 id_projeto: id_projeto,
+                id_etapa: {
+                    [Op.between]: [9, 12]
+                }
             }
         });
 
@@ -542,34 +545,37 @@ router.get('/faseTres/:id_usuario_logado/:id_projeto', async (req, res) => {
         const quantidadeDeCardsAprovados = await Card.count({
             where: {
                 id_projeto: id_projeto,
-                aprovacao: {[Op.ne] : 0},
+                id_etapa: {
+                    [Op.between]: [9, 12]
+                },
+                aprovacao: 1
             }
         });
 
-        const porcentagemAprovacao = (quantidadeDeCardsAprovados / quantidadeDeCards) * 100;
+        // Garantir que os valores sejam numéricos e não nulos
+        const totalCards = quantidadeDeCards || 0;
+        const totalCardsAprovados = quantidadeDeCardsAprovados || 0;
+
+        // Evitar divisão por zero
+        const porcentagemAprovacao = totalCards > 0 ? (totalCardsAprovados / totalCards) * 100 : 0;
+
+        let statusFase = "aguardando";
+
+        if (porcentagemAprovacao === 100) {
+            statusFase = "Concluido";
+            statusClasse = "concluido";
+        } else if (porcentagemAprovacao === 0) {
+            statusFase = "Aguardando";
+            statusClasse = "aguardando";
+        } else {
+            statusFase = "Em andamento";
+            statusClasse = "andamento";
+        }
 
 
 
-        // Conta todos os cards da fase
-        const comentariosCard = await Card.count({
-            where: {
-                id: 1,
-            }
-        });
 
-        // Conta todos os cards da ETAPA 01
-        const fasesCard = await Card.count({
-            where: {
-                id_etapa: 1,
-            }
-        });
 
-        const contTarefa1 = await Card.count({
-            where: {
-                id_projeto: id_projeto,
-                id_etapa: 3,
-            }
-        });
 
 
         // Adicionando a uma variavel todos os usuarios, para usar o id como parametro no imprime todos
@@ -596,14 +602,18 @@ router.get('/faseTres/:id_usuario_logado/:id_projeto', async (req, res) => {
             cards,
             todosComentariosDoProjeto,
             user,
+
             quantidadeDeComentarios,
             quantidadeDeColaboradores,
+            
+
+
             quantidadeDeCards,
-            comentariosCard,
-            contTarefa1,
             quantidadeDeCardsAprovados,
             porcentagemAprovacao,
-            fasesCard            
+            statusClasse,
+            statusFase
+                        
         });
 
 
@@ -629,7 +639,7 @@ router.get('/faseQuatro/:id_usuario_logado/:id_projeto', async (req, res) => {
             }
         });
 
-        // 
+        // Encontra projeto pelo ID
         const projeto = await Projeto.findOne({
             where: {
                 id: id_projeto,
@@ -637,8 +647,6 @@ router.get('/faseQuatro/:id_usuario_logado/:id_projeto', async (req, res) => {
         });
 
         // Buscar o usuário pelo ID
-
-
         const user = await User.findOne({
             where: { id: id_usuario_logado, }
         });     
@@ -707,14 +715,21 @@ router.get('/faseQuatro/:id_usuario_logado/:id_projeto', async (req, res) => {
             }
         });
 
-        // Conta todos os colaboradores da fase 
+
+
+
+
+
+        /////////////////// CONTADORES DE STATUS /////////////////// 
+
+        // Conta todos os colaboradores do projeto
         const quantidadeDeColaboradores = await UsuarioDoProjeto.count({
             where: {
                 id_projeto: id_projeto,
             }
         });
 
-        // Conta todos os comentários da fase        
+        // Conta todos os comentários do projeto       
         const quantidadeDeComentarios = await Comentario.count({
             where: {
                 id_projeto: id_projeto,
@@ -725,6 +740,9 @@ router.get('/faseQuatro/:id_usuario_logado/:id_projeto', async (req, res) => {
         const quantidadeDeCards = await Card.count({
             where: {
                 id_projeto: id_projeto,
+                id_etapa: {
+                    [Op.between]: [13, 16]
+                }
             }
         });
 
@@ -732,34 +750,37 @@ router.get('/faseQuatro/:id_usuario_logado/:id_projeto', async (req, res) => {
         const quantidadeDeCardsAprovados = await Card.count({
             where: {
                 id_projeto: id_projeto,
-                aprovacao: {[Op.ne] : 0},
+                id_etapa: {
+                    [Op.between]: [13, 16]
+                },
+                aprovacao: 1
             }
         });
 
-        const porcentagemAprovacao = (quantidadeDeCardsAprovados / quantidadeDeCards) * 100;
+        // Garantir que os valores sejam numéricos e não nulos
+        const totalCards = quantidadeDeCards || 0;
+        const totalCardsAprovados = quantidadeDeCardsAprovados || 0;
+
+        // Evitar divisão por zero
+        const porcentagemAprovacao = totalCards > 0 ? (totalCardsAprovados / totalCards) * 100 : 0;
+
+        let statusFase = "aguardando";
+
+        if (porcentagemAprovacao === 100) {
+            statusFase = "Concluido";
+            statusClasse = "concluido";
+        } else if (porcentagemAprovacao === 0) {
+            statusFase = "Aguardando";
+            statusClasse = "aguardando";
+        } else {
+            statusFase = "Em andamento";
+            statusClasse = "andamento";
+        }
 
 
 
-        // Conta todos os cards da fase
-        const comentariosCard = await Card.count({
-            where: {
-                id: 1,
-            }
-        });
 
-        // Conta todos os cards da ETAPA 01
-        const fasesCard = await Card.count({
-            where: {
-                id_etapa: 1,
-            }
-        });
 
-        const contTarefa1 = await Card.count({
-            where: {
-                id_projeto: id_projeto,
-                id_etapa: 3,
-            }
-        });
 
 
         // Adicionando a uma variavel todos os usuarios, para usar o id como parametro no imprime todos
@@ -786,14 +807,18 @@ router.get('/faseQuatro/:id_usuario_logado/:id_projeto', async (req, res) => {
             cards,
             todosComentariosDoProjeto,
             user,
+
             quantidadeDeComentarios,
             quantidadeDeColaboradores,
+            
+
+
             quantidadeDeCards,
-            comentariosCard,
-            contTarefa1,
             quantidadeDeCardsAprovados,
             porcentagemAprovacao,
-            fasesCard            
+            statusClasse,
+            statusFase
+                        
         });
 
 
@@ -802,7 +827,6 @@ router.get('/faseQuatro/:id_usuario_logado/:id_projeto', async (req, res) => {
         res.status(500).send('Erro ao buscar etapas ou projeto');
     }
 });
-
 
 
 
