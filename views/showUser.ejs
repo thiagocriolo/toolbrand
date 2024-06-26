@@ -108,49 +108,32 @@
 													<h2>
 														<%= projetoLider.nome %>
 													</h2>
-													<h5>Status:
-														<span class="fw-bold">
-															Em andamento
+													<h5><span class="fw-bold">
+														Cliente:
+													</span>
+														<span >
+															<%= projetoLider.cliente_responsavel %>
 														</span>
 													</h5>
 												</div>
 
 												<div class="projetobody">
-													<p>Pequeno brifing sobre o cliente e a conta.
+													<p><%= projetoLider.descricao %>
 													</p>
 												</div>
 												<div class="progresso">
 													<div class="inside"></div>
 												</div>
 												<div class="projetorodape container-fluid">
-													<div class="row">
-														<div class="col-6 align-items-start">
-															<div class="equipe projetocolaboradores">
-																<a href="#">
-																	<img src="/images/Avatars/avatars_1.png">
-																	<img src="/images/Avatars/avatars_2.png">
-																	<img src="/images/Avatars/avatars_3.png">
-																	<span> + 4</span>
-																</a>
+													<div class="row mt-3">
+														<div class="d-flex proj-dash-buttons ">
+															<div class="col th-contens"><a class="btn olho btn-primary"
+																	href="/projetos/show/<%= user.id %>/<%= projetoLider.id %>">
+																	<i class="bi bi-eye"></i> <h5>Ver projeto</h5> </a>
 															</div>
 														</div>
-														<div class="col-6 align-items-end alinhardireita">
-															<%= projetoLider.data_fim %>
-														</div>
 													</div>
 												</div>
-
-												<div class="d-flex proj-dash-buttons mt-3">
-													<div class="col th-contens"><a class="btn olho btn-primary"
-															href="/projetos/show/<%= user.id %>/<%= projetoLider.id %>">
-															<i class="bi bi-eye"></i> <h5>Ver projeto</h5> </a>
-													</div>
-													
-
-												</div>
-
-
-
 											</div>
 										</div>
 									</div>
