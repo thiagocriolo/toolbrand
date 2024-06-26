@@ -190,9 +190,7 @@ input[type="radio"]:checked + label img{
 	border-radius: 10em;
 }
 
-.progresso .inside.andamento {
-	background-color: #73915a;
-}
+
 
 .progresso .inside.concluído {
 	background-color: #73915a;
@@ -341,12 +339,20 @@ input[type="radio"]:checked + label img{
     background-size: auto 130%;
 }
 
-.fase>.row.andamento {
+.andamento>.row{
 	background-color: var(--amarelo);
 }
 
-.fase>.row.row.concluido .projetocolaboradores a span,
-.fase>.row.row.andamento .projetocolaboradores a span{
+.andamento>.row .anexos a{
+	background-color: var(--azul);
+}
+
+.andamento .progresso .inside {
+	background-color: var(--amarelo);
+}
+
+.concluido .projetocolaboradores a span,
+.andamento .projetocolaboradores a span{
 	color: var(--azul);
 }
 
@@ -358,13 +364,13 @@ input[type="radio"]:checked + label img{
 }
 
 
-.fase>.row.concluido {
+.concluido>.row {
 	background-color: var(--verde);
 }
-.fase>.row.row.concluido a{
+.concluido .row a{
 	background-color: var(--azul);
 }
-.fase>.row.row.concluido .progresso .inside{
+.concluido .progresso .inside {
 	background-color: var(--verde);
 }
 
@@ -472,7 +478,6 @@ input[type="radio"]:checked + label img{
 }
 
 .fase>.row{
-	background-color: #cccccc;
 	padding: 20px 20px;
 	border-radius: 20px;
 }
